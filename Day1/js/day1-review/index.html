@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Codes Training Center — Day 1 DOM Demo</title>
+    <style>
+      body { margin: 0; background: #f5f0e7; color: #12211d; font-family: "Trebuchet MS", sans-serif; }
+      main { width: min(100% - 2rem, 42rem); margin: 4rem auto; }
+      h1 { font-size: clamp(2.5rem, 8vw, 5rem); line-height: .95; }
+      form { display: grid; gap: 1rem; border-left: 5px solid #ef5b3f; padding: 2rem; background: white; }
+      label { display: grid; gap: .4rem; font-weight: bold; }
+      input, select, button { padding: .8rem; font: inherit; }
+      button { border: 0; background: #ef5b3f; color: white; font-weight: bold; cursor: pointer; }
+      #message { min-height: 1.5rem; font-weight: bold; }
+      #preview { margin-top: 2rem; border-top: 1px solid #12211d33; padding-top: 1rem; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p>DAY 1 · DOM + EVENTS</p>
+      <h1>Codes Training Center</h1>
+      <form id="registrationForm" novalidate>
+        <label>Student name <input id="studentName" required minlength="2"></label>
+        <label>Email <input id="email" type="email" required></label>
+        <label>Course
+          <select id="course" required>
+            <option value="">Choose a course</option>
+            <option>JavaScript Essentials</option>
+            <option>MEAN Stack Foundations</option>
+          </select>
+        </label>
+        <button type="submit">Save local demo registration</button>
+        <p id="message" role="status" aria-live="polite"></p>
+      </form>
+      <section id="preview" aria-live="polite">Complete the form to preview an enrollment object.</section>
+    </main>
+    <script src="registration-form.js"></script>
+  </body>
+</html>
