@@ -1,0 +1,59 @@
+<div [attr.dir]="i18n.direction()" [attr.lang]="i18n.language()" class="min-h-screen bg-cream text-ink">
+  <header class="sticky top-0 z-40 border-b border-ink/10 bg-cream/90 backdrop-blur-xl">
+    <nav class="page-shell flex min-h-20 items-center justify-between gap-2 py-3 sm:gap-5" aria-label="Main navigation">
+      <a routerLink="/" class="group flex items-center gap-3" aria-label="Codes Training Center home">
+        <span class="grid size-11 rotate-3 place-items-center bg-coral font-display text-xl font-black text-white transition-transform group-hover:rotate-0">C</span>
+        <span>
+          <strong class="block font-display text-xl leading-none">Codes</strong>
+          <span class="block whitespace-nowrap text-[0.65rem] font-semibold tracking-[0.12em] text-ink/55 sm:text-xs sm:tracking-[0.18em]">{{ i18n.t('trainingCenter') }}</span>
+        </span>
+      </a>
+
+      <div class="hidden items-center gap-6 text-sm font-bold md:flex">
+        <a routerLink="/courses" routerLinkActive="text-coral" class="nav-link">{{ i18n.t('courses') }}</a>
+        @if (auth.user()?.role === 'student') {
+          <a routerLink="/my-registrations" routerLinkActive="text-coral" class="nav-link">{{ i18n.t('myRegistrations') }}</a>
+        }
+        @if (auth.user()?.role === 'admin' || auth.user()?.role === 'manager') {
+          <a routerLink="/admin" routerLinkActive="text-coral" class="nav-link">{{ i18n.t('dashboard') }}</a>
+        }
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button type="button" class="icon-button" (click)="i18n.toggleLanguage()" [attr.aria-label]="i18n.t('changeLanguage')">
+          {{ i18n.language() === 'en' ? 'ع' : 'EN' }}
+        </button>
+        @if (auth.user()) {
+          <span class="hidden text-sm font-semibold sm:inline">{{ auth.user()?.name }}</span>
+          <button type="button" class="text-button" (click)="logout()">{{ i18n.t('logout') }}</button>
+        } @else {
+          <a routerLink="/login" class="text-button">{{ i18n.t('login') }}</a>
+          <a routerLink="/register" class="primary-button hidden sm:inline-flex">{{ i18n.t('joinNow') }}</a>
+        }
+      </div>
+    </nav>
+    <nav class="page-shell flex items-center gap-5 overflow-x-auto border-t border-ink/10 py-2 text-xs font-black md:hidden" aria-label="Mobile navigation">
+      <a routerLink="/courses" routerLinkActive="text-coral" class="whitespace-nowrap">{{ i18n.t('courses') }}</a>
+      @if (auth.user()?.role === 'student') {
+        <a routerLink="/my-registrations" routerLinkActive="text-coral" class="whitespace-nowrap">{{ i18n.t('myRegistrations') }}</a>
+      }
+      @if (auth.user()?.role === 'admin' || auth.user()?.role === 'manager') {
+        <a routerLink="/admin" routerLinkActive="text-coral" class="whitespace-nowrap">{{ i18n.t('dashboard') }}</a>
+      }
+    </nav>
+  </header>
+
+  <main>
+    <router-outlet />
+  </main>
+
+  <footer class="border-t border-ink/10 bg-ink py-10 text-cream">
+    <div class="page-shell flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+      <div>
+        <p class="font-display text-2xl font-black">Codes Training Center</p>
+        <p class="mt-2 max-w-xl text-sm text-cream/65">{{ i18n.t('footerText') }}</p>
+      </div>
+      <p class="text-xs text-cream/45">© 2026 Codes Training Center</p>
+    </div>
+  </footer>
+</div>
