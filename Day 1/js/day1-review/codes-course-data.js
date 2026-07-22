@@ -1,5 +1,5 @@
 /**
- * Day 1 JavaScript review for Codes Training Center.
+ * Day 1 JavaScript review.
  * Run with: node codes-course-data.js
  */
 
