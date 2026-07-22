@@ -33,6 +33,16 @@ export class AuthService {
     );
   }
 
+  /** Updates profile data and immediately refreshes the name/email shown in the shell. */
+  updateProfile(data: { name?: string; email?: string; currentPassword?: string; newPassword?: string }) {
+    return this.http.patch<{ user: User }>(`${this.apiUrl}/me`, data).pipe(
+      tap(({ user }) => {
+        localStorage.setItem('codes-user', JSON.stringify(user));
+        this.user.set(user);
+      }),
+    );
+  }
+
   /** Removes both pieces of local session data and returns to the public home page. */
   logout(): void {
     localStorage.removeItem('codes-token');

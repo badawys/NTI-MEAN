@@ -15,8 +15,10 @@ Base URL: `http://localhost:3000/api`. JSON request bodies require `Content-Type
 | POST | `/auth/register` | Public | `{ name, email, password }` |
 | POST | `/auth/login` | Public | `{ email, password }` |
 | GET | `/auth/me` | Authenticated | — |
+| PATCH | `/auth/me` | Authenticated | `{ name?, email?, currentPassword?, newPassword? }` |
 
 Register/login returns `{ token, user }`. Passwords require at least 8 characters during registration.
+Profile password changes require both `currentPassword` and `newPassword`.
 
 ## Courses
 

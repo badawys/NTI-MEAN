@@ -8,6 +8,7 @@ Codes Training Center is a deliberately small, portfolio-ready MEAN-stack course
 
 - Public home, course list, and course detail pages.
 - Student registration/login and “My registrations” status tracking.
+- Self-service profile updates for name, email, and password.
 - Admin course create, edit, publish, draft, and archive workflows.
 - Admin enrollment review; manager read-only review and summary access.
 - Express 5 REST API with controllers, routers, middleware, Zod validation, centralized errors, rate limiting, CORS, and Helmet.

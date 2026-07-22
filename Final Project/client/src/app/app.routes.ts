@@ -9,6 +9,11 @@ export const routes: Routes = [
   { path: 'login', loadComponent: () => import('./features/auth/login').then((m) => m.Login) },
   { path: 'register', loadComponent: () => import('./features/auth/register').then((m) => m.Register) },
   {
+    path: 'profile',
+    canActivate: [authenticatedGuard],
+    loadComponent: () => import('./features/profile/user-profile').then((m) => m.UserProfile),
+  },
+  {
     path: 'my-registrations',
     canActivate: [authenticatedGuard, roleGuard('student')],
     loadComponent: () => import('./features/enrollments/my-registrations').then((m) => m.MyRegistrations),

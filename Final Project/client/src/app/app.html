@@ -24,7 +24,7 @@
           {{ i18n.language() === 'en' ? 'ع' : 'EN' }}
         </button>
         @if (auth.user()) {
-          <span class="hidden text-sm font-semibold sm:inline">{{ auth.user()?.name }}</span>
+          <a routerLink="/profile" class="hidden text-sm font-semibold hover:text-coral sm:inline">{{ auth.user()?.name }}</a>
           <button type="button" class="text-button" (click)="logout()">{{ i18n.t('logout') }}</button>
         } @else {
           <a routerLink="/login" class="text-button">{{ i18n.t('login') }}</a>
@@ -39,6 +39,9 @@
       }
       @if (auth.user()?.role === 'admin' || auth.user()?.role === 'manager') {
         <a routerLink="/admin" routerLinkActive="text-coral" class="whitespace-nowrap">{{ i18n.t('dashboard') }}</a>
+      }
+      @if (auth.user()) {
+        <a routerLink="/profile" routerLinkActive="text-coral" class="whitespace-nowrap">{{ i18n.t('profile') }}</a>
       }
     </nav>
   </header>

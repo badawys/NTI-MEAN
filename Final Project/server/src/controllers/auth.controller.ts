@@ -66,3 +66,41 @@ export async function getCurrentUser(req: Request, res: Response): Promise<void>
 
   res.json({ user: publicUser(user) });
 }
+
+/**
+ * Updates the signed-in user's own profile. Email uniqueness and current
+ * password verification are checked here because both require database data.
+ */
+export async function updateCurrentUser(req: Request, res: Response): Promise<void> {
+  const user = await User.findById(req.authUser!.id).select('+passwordHash');
+
+  if (!user) {
+    res.status(404).json({ message: 'User not found.' });
+    return;
+  }
+
+  if (req.body.email && req.body.email !== user.email) {
+    const emailOwner = await User.findOne({ email: req.body.email });
+    if (emailOwner) {
+      res.status(409).json({ message: 'An account already uses this email.' });
+      return;
+    }
+    user.email = req.body.email;
+  }
+
+  if (req.body.name) {
+    user.name = req.body.name;
+  }
+
+  if (req.body.newPassword) {
+    const passwordMatches = await bcrypt.compare(req.body.currentPassword, user.passwordHash);
+    if (!passwordMatches) {
+      res.status(400).json({ message: 'Current password is incorrect.' });
+      return;
+    }
+    user.passwordHash = await bcrypt.hash(req.body.newPassword, 12);
+  }
+
+  await user.save();
+  res.json({ user: publicUser(user) });
+}
