@@ -34,6 +34,10 @@ Profile password changes require both `currentPassword` and `newPassword`.
 
 Course write body fields: `titleEn`, `titleAr`, `summaryEn`, `summaryAr`, `durationHours`, `capacity`, `level`, and `published`.
 
+The public course-details response also includes `confirmedEnrollments` and
+`remainingSeats`. Remaining seats equals total capacity minus confirmed enrollments;
+pending and cancelled requests do not consume displayed capacity.
+
 ## Enrollments and dashboard
 
 | Method | Path | Access | Purpose |

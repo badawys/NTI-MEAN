@@ -23,7 +23,8 @@ import { TranslationService } from '../../core/translation.service';
           <aside class="border-s-4 border-coral ps-7">
             <dl class="space-y-5">
               <div><dt class="text-xs font-black uppercase tracking-widest text-ink/45">{{ i18n.t('duration') }}</dt><dd class="mt-1 text-xl font-bold">{{ item.durationHours }} {{ i18n.t('hours') }}</dd></div>
-              <div><dt class="text-xs font-black uppercase tracking-widest text-ink/45">{{ i18n.t('capacity') }}</dt><dd class="mt-1 text-xl font-bold">{{ item.capacity }}</dd></div>
+              <div><dt class="text-xs font-black uppercase tracking-widest text-ink/45">{{ i18n.t('fullCapacity') }}</dt><dd class="mt-1 text-xl font-bold">{{ item.capacity }}</dd></div>
+              <div><dt class="text-xs font-black uppercase tracking-widest text-ink/45">{{ i18n.t('remainingSeats') }}</dt><dd class="mt-1 text-xl font-bold text-coral">{{ item.remainingSeats ?? item.capacity }}</dd></div>
               <div><dt class="text-xs font-black uppercase tracking-widest text-ink/45">{{ i18n.t('level') }}</dt><dd class="mt-1 text-xl font-bold">{{ item.level === 'Beginner' ? i18n.t('beginner') : i18n.t('intermediate') }}</dd></div>
             </dl>
             @if (auth.user()?.role === 'student') {

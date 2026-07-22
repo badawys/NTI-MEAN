@@ -1,5 +1,6 @@
 import type { Request, Response } from 'express';
 import { Course } from '../models/course.model.js';
+import { Enrollment } from '../models/enrollment.model.js';
 
 /** Lists active published courses for visitors and students. */
 export async function listPublicCourses(_req: Request, res: Response): Promise<void> {
@@ -20,7 +21,21 @@ export async function getPublicCourse(req: Request, res: Response): Promise<void
     return;
   }
 
-  res.json({ course });
+  // Only confirmed enrollments consume displayed seats. Pending requests are
+  // still awaiting an admin decision and therefore do not reduce availability.
+  const confirmedEnrollments = await Enrollment.countDocuments({
+    course: course.id,
+    status: 'confirmed',
+  });
+  const remainingSeats = Math.max(course.capacity - confirmedEnrollments, 0);
+
+  res.json({
+    course: {
+      ...course.toObject(),
+      confirmedEnrollments,
+      remainingSeats,
+    },
+  });
 }
 
 /** Admin list includes drafts and archived items for management screens. */

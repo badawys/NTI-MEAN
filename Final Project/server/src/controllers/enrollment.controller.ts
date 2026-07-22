@@ -15,12 +15,12 @@ export async function createEnrollment(req: Request, res: Response): Promise<voi
     return;
   }
 
-  const activeCount = await Enrollment.countDocuments({
+  const confirmedCount = await Enrollment.countDocuments({
     course: course.id,
-    status: { $ne: 'cancelled' },
+    status: 'confirmed',
   });
 
-  if (activeCount >= course.capacity) {
+  if (confirmedCount >= course.capacity) {
     res.status(409).json({ message: 'This course has reached its capacity.' });
     return;
   }
@@ -53,6 +53,33 @@ export async function listAllEnrollments(_req: Request, res: Response): Promise<
 
 /** Updates one enrollment status after role and body validation middleware pass. */
 export async function updateEnrollmentStatus(req: Request, res: Response): Promise<void> {
+  if (req.body.status === 'confirmed') {
+    const requestedEnrollment = await Enrollment.findById(req.params['id']);
+    if (!requestedEnrollment) {
+      res.status(404).json({ message: 'Enrollment not found.' });
+      return;
+    }
+
+    const [course, confirmedCount] = await Promise.all([
+      Course.findById(requestedEnrollment.course),
+      Enrollment.countDocuments({
+        course: requestedEnrollment.course,
+        status: 'confirmed',
+        _id: { $ne: requestedEnrollment.id },
+      }),
+    ]);
+
+    if (!course) {
+      res.status(404).json({ message: 'Course not found.' });
+      return;
+    }
+
+    if (confirmedCount >= course.capacity) {
+      res.status(409).json({ message: 'This course has reached its capacity.' });
+      return;
+    }
+  }
+
   const enrollment = await Enrollment.findByIdAndUpdate(
     req.params['id'],
     { status: req.body.status },

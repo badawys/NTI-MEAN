@@ -20,6 +20,9 @@ export interface Course {
   level: 'Beginner' | 'Intermediate';
   published: boolean;
   archived: boolean;
+  /** Availability fields are returned by the public course-details endpoint. */
+  confirmedEnrollments?: number;
+  remainingSeats?: number;
 }
 
 export interface Enrollment {
