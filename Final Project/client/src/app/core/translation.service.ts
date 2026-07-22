@@ -4,7 +4,7 @@ type Language = 'en' | 'ar';
 
 const translations = {
   en: {
-    trainingCenter: 'TRAINING CENTER', courses: 'Courses', myRegistrations: 'My registrations',
+    trainingCenter: 'TRAINING CENTER', home: 'Home', courses: 'Courses', myRegistrations: 'My registrations',
     dashboard: 'Dashboard', changeLanguage: 'Change language', logout: 'Log out', login: 'Log in',
     joinNow: 'Join now', profile: 'Profile', footerText: 'Practical technology education built around real projects.',
     heroEyebrow: 'LEARN. BUILD. SHOW YOUR WORK.', heroTitle: 'Turn curiosity into working code.',
@@ -31,7 +31,7 @@ const translations = {
     accessDenied: 'You do not have access to this page.', error: 'Something went wrong. Please try again.',
   },
   ar: {
-    trainingCenter: 'مركز التدريب', courses: 'الدورات', myRegistrations: 'تسجيلاتي', dashboard: 'لوحة التحكم',
+    trainingCenter: 'مركز التدريب', home: 'الرئيسية', courses: 'الدورات', myRegistrations: 'تسجيلاتي', dashboard: 'لوحة التحكم',
     changeLanguage: 'تغيير اللغة', logout: 'تسجيل الخروج', login: 'تسجيل الدخول', joinNow: 'انضم الآن', profile: 'الملف الشخصي',
     footerText: 'تعليم تقني عملي مبني على مشروعات حقيقية.', heroEyebrow: 'تعلّم. ابنِ. اعرض عملك.',
     heroTitle: 'حوّل فضولك إلى كود يعمل.', heroText: 'دورات مركزة وتقدم واضح ومشروعات عملية لخطوتك المهنية القادمة.',
