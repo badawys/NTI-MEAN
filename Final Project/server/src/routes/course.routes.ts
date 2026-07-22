@@ -5,6 +5,7 @@ import {
   getPublicCourse,
   listAllCourses,
   listPublicCourses,
+  unarchiveCourse,
   updateCourse,
 } from '../controllers/course.controller.js';
 import { allowRoles, requireAuthentication } from '../middleware/auth.middleware.js';
@@ -31,4 +32,10 @@ courseRouter.patch(
   asyncHandler(updateCourse),
 );
 courseRouter.delete('/:id', requireAuthentication, allowRoles('admin'), asyncHandler(archiveCourse));
+courseRouter.patch(
+  '/:id/unarchive',
+  requireAuthentication,
+  allowRoles('admin'),
+  asyncHandler(unarchiveCourse),
+);
 courseRouter.get('/:id', asyncHandler(getPublicCourse));

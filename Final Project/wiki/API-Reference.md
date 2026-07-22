@@ -28,6 +28,7 @@ Register/login returns `{ token, user }`. Passwords require at least 8 character
 | POST | `/courses` | Admin | Create bilingual course |
 | PATCH | `/courses/:id` | Admin | Edit supplied fields |
 | DELETE | `/courses/:id` | Admin | Archive and unpublish (not hard delete) |
+| PATCH | `/courses/:id/unarchive` | Admin | Restore an archived course as a draft |
 
 Course write body fields: `titleEn`, `titleAr`, `summaryEn`, `summaryAr`, `durationHours`, `capacity`, `level`, and `published`.
 

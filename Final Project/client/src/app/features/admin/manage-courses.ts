@@ -40,6 +40,8 @@ import { TranslationService } from '../../core/translation.service';
                 <div><h2 class="font-display text-2xl font-black">{{ course.titleEn }}</h2><p class="mt-1 text-lg font-bold text-ink/60" dir="rtl">{{ course.titleAr }}</p><p class="mt-3 text-sm text-ink/50">{{ course.published ? i18n.t('published') : i18n.t('draft') }} · {{ course.archived ? i18n.t('archived') : course.capacity + ' ' + i18n.t('capacity') }}</p></div>
                 @if (!course.archived) {
                   <div class="flex gap-2"><button type="button" class="text-button" (click)="startEdit(course)">{{ i18n.t('edit') }}</button><button type="button" class="text-button text-coral" (click)="archive(course._id)">{{ i18n.t('archive') }}</button></div>
+                } @else {
+                  <button type="button" class="text-button text-coral" (click)="unarchive(course._id)">{{ i18n.t('unarchive') }}</button>
                 }
               </div>
             </article>
@@ -101,5 +103,10 @@ export class ManageCourses {
   /** Calls the non-destructive archive endpoint, then refreshes the list. */
   archive(id: string): void {
     this.courseService.archive(id).subscribe({ next: () => this.loadCourses() });
+  }
+
+  /** Restores an archived course as a safe unpublished draft. */
+  unarchive(id: string): void {
+    this.courseService.unarchive(id).subscribe({ next: () => this.loadCourses() });
   }
 }

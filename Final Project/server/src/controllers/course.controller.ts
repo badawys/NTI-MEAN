@@ -65,3 +65,22 @@ export async function archiveCourse(req: Request, res: Response): Promise<void> 
 
   res.json({ course });
 }
+
+/**
+ * Restores an archived course as a draft. It remains unpublished so an admin
+ * can review its content before making it visible in the public catalog again.
+ */
+export async function unarchiveCourse(req: Request, res: Response): Promise<void> {
+  const course = await Course.findOneAndUpdate(
+    { _id: req.params['id'], archived: true },
+    { archived: false, published: false },
+    { returnDocument: 'after', runValidators: true },
+  );
+
+  if (!course) {
+    res.status(404).json({ message: 'Archived course not found.' });
+    return;
+  }
+
+  res.json({ course });
+}
