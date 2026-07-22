@@ -85,6 +85,25 @@ npm run start:web    # Angular only
 npm test --workspace client  # Angular unit tests
 ```
 
+## Postman API collection
+
+Import both files from the [`postman/`](postman/) folder into Postman:
+
+- `Codes Training Center API.postman_collection.json`
+- `Codes Training Center API.postman_environment.json`
+
+Select **Codes Training Center - Local**, then prepare and start the API:
+
+```bash
+npm run seed
+npm run start:api
+```
+
+Run the collection in its saved order. It covers every backend route and
+automatically stores student/admin/manager JWTs, course IDs, and enrollment IDs.
+The workflow creates a disposable student and temporary course, so run
+`npm run seed` afterward whenever you want to restore the original sample data.
+
 ## Environment configuration
 
 Copy `server/.env.example` to `server/.env`:

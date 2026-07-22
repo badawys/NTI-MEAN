@@ -1,0 +1,338 @@
+{
+  "info": {
+    "_postman_id": "61abf839-0cd2-4bd3-9c72-c0de510ca111",
+    "name": "Codes Training Center API",
+    "description": "Complete API collection for the Codes Training Center MEAN MVP. Run `npm run seed`, start the API, select the Local environment, then run the collection in order. Test scripts capture tokens and IDs automatically.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "studentToken", "value": "" },
+    { "key": "adminToken", "value": "" },
+    { "key": "managerToken", "value": "" },
+    { "key": "courseId", "value": "" },
+    { "key": "createdCourseId", "value": "" },
+    { "key": "enrollmentId", "value": "" },
+    { "key": "newStudentEmail", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "Health",
+      "description": "Service availability endpoint.",
+      "item": [
+        {
+          "name": "API Health",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/health",
+            "description": "Confirms that the Express API is running."
+          },
+          "event": [{
+            "listen": "test",
+            "script": { "type": "text/javascript", "exec": [
+              "pm.test('Health endpoint returns 200', () => pm.response.to.have.status(200));",
+              "pm.test('Service reports ok', () => pm.expect(pm.response.json().status).to.eql('ok'));"
+            ]}
+          }]
+        }
+      ]
+    },
+    {
+      "name": "Authentication and Profile",
+      "description": "Registration, login, current-user, profile, and password endpoints.",
+      "item": [
+        {
+          "name": "Register Disposable Student",
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": { "type": "text/javascript", "exec": [
+                "const email = `postman.student.${Date.now()}@codes.test`;",
+                "pm.collectionVariables.set('newStudentEmail', email);"
+              ]}
+            },
+            {
+              "listen": "test",
+              "script": { "type": "text/javascript", "exec": [
+                "pm.test('Student registration returns 201', () => pm.response.to.have.status(201));",
+                "const body = pm.response.json();",
+                "pm.collectionVariables.set('studentToken', body.token);",
+                "pm.test('Public registration creates a student', () => pm.expect(body.user.role).to.eql('student'));"
+              ]}
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Postman Student\",\n  \"email\": \"{{newStudentEmail}}\",\n  \"password\": \"Password123!\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": "{{baseUrl}}/api/auth/register",
+            "description": "Creates a disposable student and stores its JWT as studentToken."
+          }
+        },
+        {
+          "name": "Login Student",
+          "event": [{
+            "listen": "test",
+            "script": { "type": "text/javascript", "exec": [
+              "pm.test('Student login returns 200', () => pm.response.to.have.status(200));",
+              "pm.collectionVariables.set('studentToken', pm.response.json().token);"
+            ]}
+          }],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"email\": \"{{newStudentEmail}}\",\n  \"password\": \"Password123!\"\n}", "options": { "raw": { "language": "json" } } },
+            "url": "{{baseUrl}}/api/auth/login",
+            "description": "Authenticates the disposable student and refreshes studentToken."
+          }
+        },
+        {
+          "name": "Login Admin",
+          "event": [{
+            "listen": "test",
+            "script": { "type": "text/javascript", "exec": [
+              "pm.test('Admin login returns 200', () => pm.response.to.have.status(200));",
+              "const body = pm.response.json();",
+              "pm.collectionVariables.set('adminToken', body.token);",
+              "pm.test('Account has admin role', () => pm.expect(body.user.role).to.eql('admin'));"
+            ]}
+          }],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"email\": \"admin@codes.test\",\n  \"password\": \"Password123!\"\n}", "options": { "raw": { "language": "json" } } },
+            "url": "{{baseUrl}}/api/auth/login",
+            "description": "Authenticates the seeded admin and stores adminToken."
+          }
+        },
+        {
+          "name": "Login Manager",
+          "event": [{
+            "listen": "test",
+            "script": { "type": "text/javascript", "exec": [
+              "pm.test('Manager login returns 200', () => pm.response.to.have.status(200));",
+              "const body = pm.response.json();",
+              "pm.collectionVariables.set('managerToken', body.token);",
+              "pm.test('Account has manager role', () => pm.expect(body.user.role).to.eql('manager'));"
+            ]}
+          }],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"email\": \"manager@codes.test\",\n  \"password\": \"Password123!\"\n}", "options": { "raw": { "language": "json" } } },
+            "url": "{{baseUrl}}/api/auth/login",
+            "description": "Authenticates the seeded read-only manager and stores managerToken."
+          }
+        },
+        {
+          "name": "Get Current User",
+          "event": [{
+            "listen": "test",
+            "script": { "type": "text/javascript", "exec": [
+              "pm.test('Current-user endpoint returns 200', () => pm.response.to.have.status(200));",
+              "pm.test('Password hash is not exposed', () => pm.expect(pm.response.json().user).not.to.have.property('passwordHash'));"
+            ]}
+          }],
+          "request": {
+            "auth": { "type": "bearer", "bearer": [{ "key": "token", "value": "{{studentToken}}", "type": "string" }] },
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/auth/me",
+            "description": "Returns the authenticated user's safe profile."
+          }
+        },
+        {
+          "name": "Update Profile Details",
+          "event": [{
+            "listen": "test",
+            "script": { "type": "text/javascript", "exec": [
+              "pm.test('Profile update returns 200', () => pm.response.to.have.status(200));",
+              "pm.test('Name was updated', () => pm.expect(pm.response.json().user.name).to.eql('Postman Student Updated'));"
+            ]}
+          }],
+          "request": {
+            "auth": { "type": "bearer", "bearer": [{ "key": "token", "value": "{{studentToken}}", "type": "string" }] },
+            "method": "PATCH",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Postman Student Updated\"\n}", "options": { "raw": { "language": "json" } } },
+            "url": "{{baseUrl}}/api/auth/me",
+            "description": "Updates the signed-in user's name or email."
+          }
+        },
+        {
+          "name": "Change Password",
+          "event": [{
+            "listen": "test",
+            "script": { "type": "text/javascript", "exec": [
+              "pm.test('Password change returns 200', () => pm.response.to.have.status(200));"
+            ]}
+          }],
+          "request": {
+            "auth": { "type": "bearer", "bearer": [{ "key": "token", "value": "{{studentToken}}", "type": "string" }] },
+            "method": "PATCH",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"currentPassword\": \"Password123!\",\n  \"newPassword\": \"NewPassword123!\"\n}", "options": { "raw": { "language": "json" } } },
+            "url": "{{baseUrl}}/api/auth/me",
+            "description": "Changes the disposable student's password after current-password verification."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Courses",
+      "description": "Public course browsing and admin course management.",
+      "item": [
+        {
+          "name": "List Public Courses",
+          "event": [{
+            "listen": "test",
+            "script": { "type": "text/javascript", "exec": [
+              "pm.test('Public course list returns 200', () => pm.response.to.have.status(200));",
+              "const courses = pm.response.json().courses;",
+              "pm.test('At least one seeded course exists', () => pm.expect(courses.length).to.be.above(0));",
+              "if (courses.length) pm.collectionVariables.set('courseId', courses[0]._id);"
+            ]}
+          }],
+          "request": { "method": "GET", "header": [], "url": "{{baseUrl}}/api/courses", "description": "Lists published, non-archived courses and stores the first course ID." }
+        },
+        {
+          "name": "Get Public Course Details",
+          "event": [{
+            "listen": "test",
+            "script": { "type": "text/javascript", "exec": [
+              "pm.test('Course details return 200', () => pm.response.to.have.status(200));",
+              "const course = pm.response.json().course;",
+              "pm.test('Availability fields are calculated', () => { pm.expect(course).to.have.property('confirmedEnrollments'); pm.expect(course).to.have.property('remainingSeats'); });"
+            ]}
+          }],
+          "request": { "method": "GET", "header": [], "url": "{{baseUrl}}/api/courses/{{courseId}}", "description": "Returns public details, total capacity, confirmed enrollments, and remaining seats." }
+        },
+        {
+          "name": "List All Courses (Admin)",
+          "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('Admin course list returns 200', () => pm.response.to.have.status(200));"] } }],
+          "request": {
+            "auth": { "type": "bearer", "bearer": [{ "key": "token", "value": "{{adminToken}}", "type": "string" }] },
+            "method": "GET", "header": [], "url": "{{baseUrl}}/api/courses/admin",
+            "description": "Lists published, draft, and archived courses for admins."
+          }
+        },
+        {
+          "name": "Create Course",
+          "event": [{
+            "listen": "test",
+            "script": { "type": "text/javascript", "exec": [
+              "pm.test('Course creation returns 201', () => pm.response.to.have.status(201));",
+              "pm.collectionVariables.set('createdCourseId', pm.response.json().course._id);"
+            ]}
+          }],
+          "request": {
+            "auth": { "type": "bearer", "bearer": [{ "key": "token", "value": "{{adminToken}}", "type": "string" }] },
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"titleEn\": \"Postman API Workshop\",\n  \"titleAr\": \"ورشة اختبار الواجهة البرمجية\",\n  \"summaryEn\": \"A temporary bilingual course created by the Postman workflow.\",\n  \"summaryAr\": \"دورة مؤقتة ثنائية اللغة تم إنشاؤها من خلال Postman.\",\n  \"durationHours\": 12,\n  \"capacity\": 15,\n  \"level\": \"Beginner\",\n  \"published\": false\n}", "options": { "raw": { "language": "json" } } },
+            "url": "{{baseUrl}}/api/courses",
+            "description": "Creates a draft course and stores createdCourseId."
+          }
+        },
+        {
+          "name": "Update Course",
+          "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('Course update returns 200', () => pm.response.to.have.status(200));", "pm.test('Capacity was updated', () => pm.expect(pm.response.json().course.capacity).to.eql(20));"] } }],
+          "request": {
+            "auth": { "type": "bearer", "bearer": [{ "key": "token", "value": "{{adminToken}}", "type": "string" }] },
+            "method": "PATCH", "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"capacity\": 20,\n  \"published\": true\n}", "options": { "raw": { "language": "json" } } },
+            "url": "{{baseUrl}}/api/courses/{{createdCourseId}}",
+            "description": "Updates selected course fields."
+          }
+        },
+        {
+          "name": "Archive Course",
+          "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('Course archive returns 200', () => pm.response.to.have.status(200));", "pm.test('Course is archived and unpublished', () => { const course = pm.response.json().course; pm.expect(course.archived).to.eql(true); pm.expect(course.published).to.eql(false); });"] } }],
+          "request": {
+            "auth": { "type": "bearer", "bearer": [{ "key": "token", "value": "{{adminToken}}", "type": "string" }] },
+            "method": "DELETE", "header": [], "url": "{{baseUrl}}/api/courses/{{createdCourseId}}",
+            "description": "Archives and unpublishes a course without deleting history."
+          }
+        },
+        {
+          "name": "Unarchive Course",
+          "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('Course unarchive returns 200', () => pm.response.to.have.status(200));", "pm.test('Restored course is a draft', () => { const course = pm.response.json().course; pm.expect(course.archived).to.eql(false); pm.expect(course.published).to.eql(false); });"] } }],
+          "request": {
+            "auth": { "type": "bearer", "bearer": [{ "key": "token", "value": "{{adminToken}}", "type": "string" }] },
+            "method": "PATCH", "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{}", "options": { "raw": { "language": "json" } } },
+            "url": "{{baseUrl}}/api/courses/{{createdCourseId}}/unarchive",
+            "description": "Restores an archived course as an unpublished draft."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Enrollments and Dashboard",
+      "description": "Student registration, ownership, staff review, and dashboard summaries.",
+      "item": [
+        {
+          "name": "Create Enrollment",
+          "event": [{
+            "listen": "test",
+            "script": { "type": "text/javascript", "exec": [
+              "pm.test('Enrollment creation returns 201', () => pm.response.to.have.status(201));",
+              "const enrollment = pm.response.json().enrollment;",
+              "pm.collectionVariables.set('enrollmentId', enrollment._id);",
+              "pm.test('New enrollment is pending', () => pm.expect(enrollment.status).to.eql('pending'));"
+            ]}
+          }],
+          "request": {
+            "auth": { "type": "bearer", "bearer": [{ "key": "token", "value": "{{studentToken}}", "type": "string" }] },
+            "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"courseId\": \"{{courseId}}\"\n}", "options": { "raw": { "language": "json" } } },
+            "url": "{{baseUrl}}/api/enrollments",
+            "description": "Registers the disposable student for a public course and stores enrollmentId."
+          }
+        },
+        {
+          "name": "List My Enrollments",
+          "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('Student enrollment list returns 200', () => pm.response.to.have.status(200));", "pm.test('List contains the new enrollment', () => pm.expect(pm.response.json().enrollments.some(item => item._id === pm.collectionVariables.get('enrollmentId'))).to.eql(true));"] } }],
+          "request": {
+            "auth": { "type": "bearer", "bearer": [{ "key": "token", "value": "{{studentToken}}", "type": "string" }] },
+            "method": "GET", "header": [], "url": "{{baseUrl}}/api/enrollments/mine",
+            "description": "Lists only the authenticated student's enrollment records."
+          }
+        },
+        {
+          "name": "List All Enrollments (Manager)",
+          "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('Manager enrollment list returns 200', () => pm.response.to.have.status(200));"] } }],
+          "request": {
+            "auth": { "type": "bearer", "bearer": [{ "key": "token", "value": "{{managerToken}}", "type": "string" }] },
+            "method": "GET", "header": [], "url": "{{baseUrl}}/api/enrollments/admin",
+            "description": "Shows that managers can read the populated enrollment review list."
+          }
+        },
+        {
+          "name": "Dashboard Summary (Manager)",
+          "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('Manager dashboard summary returns 200', () => pm.response.to.have.status(200));", "pm.test('Summary includes four counters', () => { const body = pm.response.json(); ['courses','publishedCourses','enrollments','pendingEnrollments'].forEach(key => pm.expect(body).to.have.property(key)); });"] } }],
+          "request": {
+            "auth": { "type": "bearer", "bearer": [{ "key": "token", "value": "{{managerToken}}", "type": "string" }] },
+            "method": "GET", "header": [], "url": "{{baseUrl}}/api/enrollments/summary",
+            "description": "Returns active course and enrollment counters for admin/manager dashboards."
+          }
+        },
+        {
+          "name": "Confirm Enrollment (Admin)",
+          "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('Enrollment status update returns 200', () => pm.response.to.have.status(200));", "pm.test('Enrollment is confirmed', () => pm.expect(pm.response.json().enrollment.status).to.eql('confirmed'));"] } }],
+          "request": {
+            "auth": { "type": "bearer", "bearer": [{ "key": "token", "value": "{{adminToken}}", "type": "string" }] },
+            "method": "PATCH", "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"status\": \"confirmed\"\n}", "options": { "raw": { "language": "json" } } },
+            "url": "{{baseUrl}}/api/enrollments/{{enrollmentId}}",
+            "description": "Confirms an enrollment while enforcing course capacity. Change status to pending or cancelled to test other transitions."
+          }
+        }
+      ]
+    }
+  ]
+}

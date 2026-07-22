@@ -2,6 +2,10 @@
 
 Base URL: `http://localhost:3000/api`. JSON request bodies require `Content-Type: application/json`. Protected endpoints require `Authorization: Bearer <token>`.
 
+An executable Postman collection and local environment are available in the
+project's `postman/` directory. The collection follows the endpoint groups below
+and captures authentication/resource variables automatically.
+
 ## Health
 
 | Method | Path | Access | Result |
