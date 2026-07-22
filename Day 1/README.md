@@ -28,10 +28,10 @@ Training centers often publish course details in messages and collect registrati
 Data transformation in the terminal:
 
 ```bash
-node Day1/js/day1-review/codes-course-data.js
+node "Day 1/js/day1-review/codes-course-data.js"
 ```
 
-DOM/events example: open `Day1/js/day1-review/index.html` directly in a browser. Fill the form and submit it. No server or database is used on Day 1.
+DOM/events example: open `Day 1/js/day1-review/index.html` directly in a browser. Fill the form and submit it. No server or database is used on Day 1.
 
 ## Reflection question / bug to discuss
 

@@ -9,7 +9,6 @@ This wiki explains how to understand, run, test, and safely extend the Codes Tra
 - **I need to study the complete flow:** follow the [suggested learning walkthrough](../README.md#suggested-learning-walkthrough).
 - **I need to verify it:** [Testing](Testing.md) and [Troubleshooting](Troubleshooting.md).
 - **I need to discuss security:** [Security](Security.md).
-- **I am an end user:** [Help Center](../docs/help-center/user-guide.md).
 
 ## MVP boundaries
 
