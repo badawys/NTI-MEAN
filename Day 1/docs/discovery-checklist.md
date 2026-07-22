@@ -15,7 +15,7 @@ Write the client’s answer beside every question. Do not design the solution un
 - What information must a student provide?
 - Which employee creates courses and decides registration status?
 - Does a manager need edit access or only summaries?
-- Are instructors part of this MVP? (Current answer: no.)
+- Are instructors part of this MVP?
 
 ## Workflow
 
@@ -37,7 +37,6 @@ Write the client’s answer beside every question. Do not design the solution un
 
 - What is the delivery date and review schedule?
 - Which devices/browsers matter most?
-- Is local MongoDB acceptable for class and Atlas preferred for deployment?
 - What hosting budget and domain already exist?
 - Which integrations are explicitly excluded?
 
