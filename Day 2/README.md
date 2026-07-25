@@ -26,6 +26,9 @@ After completing this folder, you should be able to:
 |---|---|
 | [`day-02-advanced-js/01-execution-model.md`](day-02-advanced-js/01-execution-model.md) | Execution context, scope, closures, call stack, and event loop notes |
 | [`day-02-advanced-js/02-async-workflow.js`](day-02-advanced-js/02-async-workflow.js) | Runnable callback, Promise, and `async`/`await` registration examples |
+| [`day-02-advanced-js/index.html`](day-02-advanced-js/index.html) | Interactive browser interface using the same JavaScript functions |
+| [`day-02-advanced-js/ui.js`](day-02-advanced-js/ui.js) | DOM events, UI state, and calls to the shared workflow |
+| [`day-02-advanced-js/styles.css`](day-02-advanced-js/styles.css) | Responsive visual design and interface motion |
 | [`day-02-advanced-js/03-debugging-notes.md`](day-02-advanced-js/03-debugging-notes.md) | Root-cause analysis for the two bugs from the presentation |
 | [`day-02-advanced-js/04-ai-verification-log.md`](day-02-advanced-js/04-ai-verification-log.md) | Worked verification record and a reusable student template |
 
@@ -60,6 +63,19 @@ The script demonstrates:
 The asynchronous messages can appear after some synchronous messages. This is
 expected and is part of the event-loop lesson.
 
+## Run the browser interface
+
+Open
+`Day 2/day-02-advanced-js/index.html`
+directly in a modern browser. No server or installation is required.
+
+The interface uses the exact functions from `02-async-workflow.js`. Try:
+
+- registering for **Angular Basics** to see the success path;
+- registering for **Node API Fundamentals** to see the full-course error;
+- entering an invalid email to see validation error handling;
+- comparing callback and Promise course lookups in the async activity log.
+
 ## Manual verification checklist
 
 - The callback example prints the Angular course title.
@@ -68,6 +84,8 @@ expected and is part of the event-loop lesson.
 - The invalid-email scenario reports `A valid student email is required`.
 - The full-course scenario reports `No seats available for this course`.
 - The missing-course scenario reports `Course was not found`.
+- The HTML interface works at desktop and mobile widths.
+- The browser registration results match the terminal workflow results.
 - You can explain why the code uses `return` when creating or forwarding a
   Promise.
 - You have read and understood the debugging notes.

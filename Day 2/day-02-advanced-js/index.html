@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Codes Training Center Day 2 interactive asynchronous JavaScript lab."
+    />
+    <title>Codes Training Center | Day 2 Async Lab</title>
+    <link rel="stylesheet" href="styles.css" />
+
+    <!--
+      `defer` downloads both files without blocking HTML parsing and executes
+      them in document order. The shared workflow must load before ui.js because
+      ui.js reads the `window.CodesDay2` object created by that first file.
+    -->
+    <script src="02-async-workflow.js" defer></script>
+    <script src="ui.js" defer></script>
+  </head>
+
+  <body>
+    <div class="page-shell">
+      <header class="topbar" aria-label="Primary">
+        <a class="brand" href="#" aria-label="Codes Training Center home">
+          <span class="brand-mark" aria-hidden="true">&lt;/&gt;</span>
+          <span>
+            <strong>Codes</strong>
+            <small>Training Center</small>
+          </span>
+        </a>
+        <span class="day-label">Day 2 Lab</span>
+      </header>
+
+      <main>
+        <section class="intro" aria-labelledby="pageTitle">
+          <p class="eyebrow">Day 2 · Interactive JavaScript</p>
+          <h1 id="pageTitle">
+            See asynchronous code become a real registration flow.
+          </h1>
+          <p class="intro-copy">
+            Submit the form, inspect course capacity, and compare callbacks with
+            Promises—all powered by the same functions used in the terminal example.
+          </p>
+        </section>
+
+        <section class="lab-layout" aria-label="Interactive registration lab">
+          <div class="registration-panel">
+            <div class="section-heading">
+              <p class="step-number">01 · Registration</p>
+              <h2>Try the async/await workflow</h2>
+              <p>
+                The interface waits for the shared registration function, then
+                renders its success or error result.
+              </p>
+            </div>
+
+            <form id="registrationForm" novalidate>
+              <label for="course">
+                <span>Course</span>
+                <select id="course" name="course" required></select>
+              </label>
+
+              <div class="course-facts" aria-live="polite">
+                <div>
+                  <span>Full capacity</span>
+                  <strong id="capacityValue">—</strong>
+                </div>
+                <div>
+                  <span>Remaining seats</span>
+                  <strong id="remainingValue">—</strong>
+                </div>
+              </div>
+
+              <label for="studentName">
+                <span>Student name</span>
+                <input
+                  id="studentName"
+                  name="studentName"
+                  type="text"
+                  autocomplete="name"
+                  placeholder="e.g. Mona Ali"
+                  required
+                />
+              </label>
+
+              <label for="studentEmail">
+                <span>Email address</span>
+                <input
+                  id="studentEmail"
+                  name="studentEmail"
+                  type="email"
+                  autocomplete="email"
+                  placeholder="mona@example.com"
+                  required
+                />
+              </label>
+
+              <button class="primary-button" id="submitButton" type="submit">
+                <span>Submit registration</span>
+                <span aria-hidden="true">→</span>
+              </button>
+            </form>
+
+            <!-- role="status" announces async feedback to screen-reader users. -->
+            <div class="result result-idle" id="registrationResult" role="status">
+              <span class="result-dot" aria-hidden="true"></span>
+              <div>
+                <strong>Ready to test</strong>
+                <p>
+                  Complete the form to start the async workflow.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <aside class="activity-panel" aria-labelledby="activityTitle">
+            <div class="section-heading">
+              <p class="step-number">02 · Compare patterns</p>
+              <h2 id="activityTitle">
+                Callback & Promise activity
+              </h2>
+              <p>
+                Run both course lookups and watch each delayed result arrive.
+              </p>
+            </div>
+
+            <button class="secondary-button" id="runComparisonButton" type="button">
+              <span>Run comparison</span>
+              <span aria-hidden="true">↗</span>
+            </button>
+
+            <ol class="activity-log" id="activityLog" aria-live="polite">
+              <li class="log-placeholder">
+                Activity will appear here.
+              </li>
+            </ol>
+
+            <div class="concept-note">
+              <span aria-hidden="true">i</span>
+              <p>
+                Both lookups are asynchronous. The callback receives its result
+                through a function; the Promise exposes a future value that can be
+                awaited or chained.
+              </p>
+            </div>
+          </aside>
+        </section>
+      </main>
+
+      <footer>
+        <p>
+          Plain JavaScript · No framework · No external packages
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>

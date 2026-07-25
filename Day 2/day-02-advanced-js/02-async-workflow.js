@@ -99,6 +99,19 @@ function calculateRemainingSeats(course) {
 }
 
 /**
+ * Returns safe copies of every course for a terminal or browser interface.
+ *
+ * Returning copies prevents interface code from changing the lesson's original
+ * in-memory records. Later in the course, an API endpoint will provide this
+ * boundary between stored data and the user interface.
+ *
+ * @returns {Array<object>} New array containing a shallow copy of each course.
+ */
+function getCourses() {
+  return courses.map((course) => ({ ...course }));
+}
+
+/**
  * Throws when the course cannot accept another approved enrollment.
  *
  * Throwing stops the current success path. The surrounding async function will
@@ -278,9 +291,45 @@ async function runDemonstration() {
   printScenario('Missing course is rejected', missingCourseResult);
 }
 
-// Start the demonstration and report only unexpected failures that escaped the
-// business-level error handling above.
-runDemonstration().catch((error) => {
-  console.error('Unexpected demonstration failure:', error);
-  process.exitCode = 1;
+/**
+ * One public object exposes the same lesson functions to both environments:
+ *
+ * - Node.js receives the object through `module.exports`.
+ * - The browser receives it through `window.CodesDay2`.
+ *
+ * This avoids copying business rules into the HTML interface. The terminal and
+ * browser examples therefore run the same lookup, validation, seat calculation,
+ * Promise, and async/await functions.
+ */
+const CodesDay2 = Object.freeze({
+  calculateRemainingSeats,
+  ensureSeatAvailable,
+  findCourseById,
+  findCourseByIdWithCallback,
+  getCourses,
+  registerStudent,
+  registerStudentWithPromises,
+  runDemonstration,
+  validateStudent,
 });
+
+// CommonJS exists when this file runs in Node.js. Exporting the object also makes
+// the functions available to future automated tests without running the demo.
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = CodesDay2;
+
+  // `require.main === module` is true only when the student runs this file
+  // directly. It is false when another Node.js file imports the functions.
+  if (require.main === module) {
+    runDemonstration().catch((error) => {
+      console.error('Unexpected demonstration failure:', error);
+      process.exitCode = 1;
+    });
+  }
+}
+
+// `window` exists in a browser. The UI script reads this one global namespace
+// instead of depending on many unrelated global variables.
+if (typeof window !== 'undefined') {
+  window.CodesDay2 = CodesDay2;
+}
