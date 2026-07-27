@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>Day 3 Slide Examples | Codes Training Center</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.3"></script>
+    <style type="text/tailwindcss">
+      @theme {
+        --color-cream: #f6f1e7;
+        --color-ink: #172a24;
+        --color-coral: #e65338;
+        --color-mint: #9be0c7;
+        --font-sans: "Avenir Next", "Trebuchet MS", sans-serif;
+      }
+      @layer base {
+        html { scroll-behavior: smooth; }
+        body { @apply m-0 bg-cream text-ink antialiased; }
+        article { @apply min-w-0; }
+        :focus-visible { @apply outline-3 outline-offset-3 outline-coral; }
+      }
+      @layer components {
+        .shell { @apply mx-auto w-[min(100%-2rem,76rem)]; }
+        .kicker { @apply text-xs font-black uppercase tracking-[.2em] text-coral; }
+        .section-title { @apply mt-3 max-w-4xl text-4xl leading-none font-black tracking-tight sm:text-6xl; }
+        .section-copy { @apply mt-5 max-w-3xl text-base leading-7 text-ink/65; }
+        .example { @apply min-w-0 border-s-4 border-coral bg-white/65 p-5 sm:p-7; }
+        pre { @apply max-w-full; }
+        .term { @apply border-t border-ink/20 py-5; }
+        .tag { @apply inline-flex bg-mint/45 px-2 py-1 text-[10px] font-black uppercase tracking-wider; }
+        .button { @apply inline-flex min-h-11 items-center justify-center bg-coral px-5 font-black text-white hover:bg-ink; }
+      }
+    </style>
+  </head>
+  <body>
+    <a href="#main" class="fixed start-4 top-4 z-50 -translate-y-24 bg-ink px-4 py-3 text-sm font-black text-white focus:translate-y-0">Skip to examples</a>
+
+    <header class="bg-ink text-cream">
+      <div class="shell py-16 sm:py-24">
+        <p class="kicker text-mint">Codes Training Center · Day 3</p>
+        <h1 class="mt-5 max-w-5xl text-5xl leading-[.93] font-black tracking-tight sm:text-8xl">
+          Every slide example, translated into HTML.
+        </h1>
+        <p class="mt-7 max-w-2xl text-lg leading-8 text-cream/70">
+          Review research, information architecture, responsive design,
+          accessibility, usability, SEO, and performance as browser content.
+        </p>
+        <nav aria-label="Lesson blocks" class="mt-10 flex flex-wrap gap-3">
+          <a class="button" href="#research">Research & IA</a>
+          <a class="button" href="#wireframes">Wireframes</a>
+          <a class="button" href="#accessibility">Accessibility</a>
+          <a class="button" href="#seo">SEO</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section id="research" class="shell py-16 sm:py-24">
+        <p class="kicker">Block 1</p>
+        <h2 class="section-title">User research & information architecture</h2>
+        <p class="section-copy">Design begins by understanding the people, goals, pain points, decisions, and routes—not by choosing colors.</p>
+
+        <div class="mt-12 grid gap-8 lg:grid-cols-2">
+          <article class="example">
+            <span class="tag">Slide 7 · terms</span>
+            <h3 class="mt-4 text-2xl font-black">Client, user, and persona</h3>
+            <dl class="mt-5">
+              <div class="term"><dt class="font-black">Client</dt><dd class="mt-1 text-sm leading-6 text-ink/65">The person or organization paying for the solution.</dd></div>
+              <div class="term"><dt class="font-black">User</dt><dd class="mt-1 text-sm leading-6 text-ink/65">The person who actually uses the application.</dd></div>
+              <div class="term"><dt class="font-black">Persona</dt><dd class="mt-1 text-sm leading-6 text-ink/65">A simple realistic profile representing one important user type.</dd></div>
+              <div class="term"><dt class="font-black">Goal</dt><dd class="mt-1 text-sm leading-6 text-ink/65">What the user wants to achieve.</dd></div>
+              <div class="term"><dt class="font-black">Pain point</dt><dd class="mt-1 text-sm leading-6 text-ink/65">What currently makes the workflow difficult.</dd></div>
+            </dl>
+          </article>
+
+          <article class="example">
+            <span class="tag">Slide 8 · persona</span>
+            <h3 class="mt-4 text-2xl font-black">Mona · prospective student</h3>
+            <dl class="mt-5 grid grid-cols-[7rem_1fr] gap-x-4 gap-y-3 text-sm leading-6">
+              <dt class="font-black">Profile</dt><dd>21, computer-science student</dd>
+              <dt class="font-black">Goal</dt><dd>Find a practical Angular course quickly</dd>
+              <dt class="font-black">Pain</dt><dd>Details are scattered across social posts</dd>
+              <dt class="font-black">Needs</dt><dd>Dates, level, duration, seats, and status</dd>
+              <dt class="font-black">Success</dt><dd>Registers from mobile without calling the center</dd>
+            </dl>
+          </article>
+
+          <article class="example">
+            <span class="tag">Slide 9 · persona</span>
+            <h3 class="mt-4 text-2xl font-black">Heba · training coordinator</h3>
+            <dl class="mt-5 grid grid-cols-[7rem_1fr] gap-x-4 gap-y-3 text-sm leading-6">
+              <dt class="font-black">Goal</dt><dd>Publish courses and review enrollments faster</dd>
+              <dt class="font-black">Pain</dt><dd>Requests arrive through messages and spreadsheets</dd>
+              <dt class="font-black">Needs</dt><dd>Dashboard, filters, statuses, and clear student details</dd>
+              <dt class="font-black">Success</dt><dd>Approves or cancels requests with fewer mistakes</dd>
+            </dl>
+          </article>
+
+          <article class="example">
+            <span class="tag">Slide 10 · comparison</span>
+            <h3 class="mt-4 text-2xl font-black">Journey vs flow</h3>
+            <div class="mt-5 grid gap-5 sm:grid-cols-2">
+              <div><p class="font-black">User journey</p><p class="mt-2 text-sm leading-6 text-ink/65">The full experience before, during, and after app use—including feelings, doubts, and decisions.</p></div>
+              <div><p class="font-black">User flow</p><p class="mt-2 text-sm leading-6 text-ink/65">The exact screen-by-screen path, actions, branches, and transitions inside the app.</p></div>
+            </div>
+          </article>
+        </div>
+
+        <article class="mt-8 border-y border-ink/20 py-8">
+          <span class="tag">Slide 11 · journey</span>
+          <h3 class="mt-4 text-2xl font-black">Student registration journey</h3>
+          <ol class="mt-7 grid gap-3 sm:grid-cols-5">
+            <li class="example"><b>1. Need</b><p class="mt-2 text-xs leading-5">Learn Angular for career growth.</p></li>
+            <li class="example"><b>2. Discovery</b><p class="mt-2 text-xs leading-5">Find the Codes course catalog.</p></li>
+            <li class="example"><b>3. Decision</b><p class="mt-2 text-xs leading-5">Compare level, date, seats, and detail.</p></li>
+            <li class="example"><b>4. Action</b><p class="mt-2 text-xs leading-5">Submit a registration request.</p></li>
+            <li class="example"><b>5. Follow-up</b><p class="mt-2 text-xs leading-5">Track pending, confirmed, or cancelled.</p></li>
+          </ol>
+        </article>
+
+        <article class="mt-8 example">
+          <span class="tag">Slide 12 · user flow</span>
+          <h3 class="mt-4 text-2xl font-black">Register for a course</h3>
+          <ol class="mt-6 flex flex-col gap-2 text-sm font-black sm:flex-row sm:flex-wrap sm:items-center">
+            <li class="border border-ink/25 p-3">Home</li><li aria-hidden="true">→</li>
+            <li class="border border-ink/25 p-3">Course list</li><li aria-hidden="true">→</li>
+            <li class="border border-ink/25 p-3">Course details</li><li aria-hidden="true">→</li>
+            <li class="border border-ink/25 p-3">Register / sign in</li><li aria-hidden="true">→</li>
+            <li class="border border-ink/25 p-3">Submit</li><li aria-hidden="true">→</li>
+            <li class="border border-ink/25 p-3">Confirmation</li><li aria-hidden="true">→</li>
+            <li class="border border-ink/25 p-3">My registrations</li>
+          </ol>
+        </article>
+
+        <article class="mt-8 example">
+          <span class="tag">Slides 13–15 · IA output</span>
+          <h3 class="mt-4 text-2xl font-black">Codes application structure</h3>
+          <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <div><h4 class="font-black">Public</h4><ul class="mt-3 space-y-2 text-sm text-ink/65"><li>Home</li><li>Course list</li><li>Course detail</li><li>Login / Register</li></ul></div>
+            <div><h4 class="font-black">Student</h4><ul class="mt-3 space-y-2 text-sm text-ink/65"><li>My registrations</li><li>Profile</li></ul></div>
+            <div><h4 class="font-black">Admin / Manager</h4><ul class="mt-3 space-y-2 text-sm text-ink/65"><li>Dashboard</li><li>Courses (admin)</li><li>Enrollment review</li></ul></div>
+            <div><h4 class="font-black">Shared states</h4><ul class="mt-3 space-y-2 text-sm text-ink/65"><li>Loading</li><li>Empty</li><li>Error</li><li>Success</li></ul></div>
+          </div>
+        </article>
+      </section>
+
+      <section id="wireframes" class="bg-white/55">
+        <div class="shell py-16 sm:py-24">
+          <p class="kicker">Block 2</p>
+          <h2 class="section-title">Responsive wireframes & visual hierarchy</h2>
+          <p class="section-copy">A wireframe shows content, order, actions, states, and responsive behavior before visual polish.</p>
+
+          <div class="mt-12 grid gap-8 md:grid-cols-2">
+            <article class="example"><span class="tag">Slide 17</span><h3 class="mt-4 text-2xl font-black">Wireframe purpose</h3><ul class="mt-5 list-disc space-y-2 ps-5 text-sm leading-6 text-ink/65"><li>Shows structure and layout priority</li><li>Avoids detailed decoration</li><li>Supports early client review</li><li>Plans components and forms</li></ul></article>
+            <article class="example"><span class="tag">Slide 18</span><h3 class="mt-4 text-2xl font-black">Visual hierarchy</h3><ul class="mt-5 list-disc space-y-2 ps-5 text-sm leading-6 text-ink/65"><li>Make the primary action easy to find</li><li>Use headings for location and structure</li><li>Group related content with spacing</li><li>Use size and contrast for priority</li></ul></article>
+            <article class="example"><span class="tag">Slide 19</span><h3 class="mt-4 text-2xl font-black">Consistency</h3><ul class="mt-5 list-disc space-y-2 ps-5 text-sm leading-6 text-ink/65"><li>Keep button meanings stable</li><li>Make validation predictable</li><li>Reuse course and table patterns</li><li>Keep navigation stable</li></ul></article>
+            <article class="example"><span class="tag">Slide 20</span><h3 class="mt-4 text-2xl font-black">Responsive basics</h3><ul class="mt-5 list-disc space-y-2 ps-5 text-sm leading-6 text-ink/65"><li>Start with content</li><li>Use one column on small screens</li><li>Use filters/tables/side panels when space allows</li><li>Keep touch targets easy to tap</li></ul></article>
+          </div>
+
+          <div class="mt-8 grid gap-8 lg:grid-cols-3">
+            <article class="example"><span class="tag">Slide 21 · course list</span><h3 class="mt-4 text-xl font-black">Discovery wireframe</h3><div class="mt-5 space-y-3"><div class="h-9 border-2 border-ink/30"></div><div class="h-20 border-2 border-ink/30 p-3 text-xs">Title · level · date · availability → Details</div><div class="h-20 border-2 border-ink/30 p-3 text-xs">Title · level · date · availability → Details</div></div><p class="mt-4 text-xs leading-5 text-ink/60">Search and filters lead; mobile stacks them above results.</p></article>
+            <article class="example"><span class="tag">Slide 22 · course detail</span><h3 class="mt-4 text-xl font-black">Decision wireframe</h3><div class="mt-5 grid gap-3 sm:grid-cols-[1fr_7rem]"><div class="h-40 border-2 border-ink/30 p-3 text-xs">Title<br><br>Value statement<br><br>Description</div><div class="h-40 border-2 border-ink/30 p-3 text-xs">Facts<br><br>[ Register ]</div></div><p class="mt-4 text-xs leading-5 text-ink/60">Course value comes before the action.</p></article>
+            <article class="example"><span class="tag">Slide 23 · admin review</span><h3 class="mt-4 text-xl font-black">Operational wireframe</h3><div class="mt-5 space-y-3"><div class="grid grid-cols-3 gap-2"><div class="h-10 border-2 border-ink/30"></div><div class="h-10 border-2 border-ink/30"></div><div class="h-10 border-2 border-ink/30"></div></div><div class="h-28 border-2 border-ink/30 p-3 text-xs">Student · Course · Date · Status · Safe actions</div></div><p class="mt-4 text-xs leading-5 text-ink/60">Filters reduce work; confirmation prevents accidental changes.</p></article>
+          </div>
+
+          <article class="mt-8 example"><span class="tag">Slides 24–25 · content-first output</span><h3 class="mt-4 text-2xl font-black">Write before decorating</h3><div class="mt-6 grid gap-6 sm:grid-cols-2"><ul class="list-disc space-y-2 ps-5 text-sm leading-6"><li>Use real headings</li><li>Name buttons by action</li><li>Write empty and error states</li><li>Plan reusable card, button, table, field, and alert components</li></ul><p class="text-sm leading-7 text-ink/65">Responsive notes must describe what stacks, scrolls, moves, hides, or remains fixed—without changing the reading order.</p></div></article>
+        </div>
+      </section>
+
+      <section id="accessibility" class="shell py-16 sm:py-24">
+        <p class="kicker">Block 3</p>
+        <h2 class="section-title">Accessibility & usability</h2>
+        <p class="section-copy">Semantics, labels, keyboard behavior, contrast, and useful states are part of the experience—not optional cleanup.</p>
+
+        <div class="mt-12 grid gap-8 lg:grid-cols-2">
+          <article class="example"><span class="tag">Slide 28 · semantic HTML</span><h3 class="mt-4 text-2xl font-black">Meaning before styling</h3><pre class="mt-5 overflow-x-auto bg-ink p-5 text-xs leading-6 text-cream"><code>&lt;main&gt;
+  &lt;h1&gt;Angular Foundations&lt;/h1&gt;
+  &lt;section aria-labelledby="facts"&gt;
+    &lt;h2 id="facts"&gt;Course facts&lt;/h2&gt;
+    &lt;a href="/login"&gt;Sign in to register&lt;/a&gt;
+  &lt;/section&gt;
+&lt;/main&gt;</code></pre></article>
+
+          <article class="example"><span class="tag">Slide 29 · labels and errors</span><h3 class="mt-4 text-2xl font-black">Registration field</h3><form class="mt-5"><label for="example-email" class="block text-sm font-black">Email address <span aria-hidden="true">*</span></label><p id="email-hint" class="mt-1 text-xs text-ink/60">Use the address connected to your account.</p><input id="example-email" type="email" aria-describedby="email-hint email-error" class="mt-3 min-h-12 w-full border-2 border-coral bg-white px-4" value="invalid-email"><p id="email-error" class="mt-2 font-black text-coral"><span aria-hidden="true">⚠</span> Enter an email such as name@example.com.</p></form></article>
+
+          <article class="example"><span class="tag">Slide 30 · keyboard</span><h3 class="mt-4 text-2xl font-black">Keyboard path</h3><ol class="mt-5 list-decimal space-y-2 ps-5 text-sm leading-6"><li>Skip to main content</li><li>Navigate to Courses</li><li>Search and filter</li><li>Open course details</li><li>Sign in/register</li><li>Hear success feedback</li><li>Open My registrations</li></ol></article>
+
+          <article class="example"><span class="tag">Slide 31 · contrast</span><h3 class="mt-4 text-2xl font-black">Readability rules</h3><div class="mt-5 bg-ink p-5 text-cream"><p class="text-lg leading-8">Readable text uses sufficient contrast, comfortable line height, and a useful line length.</p><p class="mt-4 inline-flex border border-cream px-3 py-2 text-sm font-black">Error: email format is invalid</p></div><p class="mt-4 text-xs leading-5 text-ink/60">The error includes text and structure, not only red color.</p></article>
+        </div>
+
+        <article class="mt-8 example"><span class="tag">Slides 32–34 · usability output</span><h3 class="mt-4 text-2xl font-black">Five beginner checks</h3><ol class="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-5"><li class="border border-ink/20 p-4 text-sm">Understand the goal in five seconds?</li><li class="border border-ink/20 p-4 text-sm">Complete the task without explanation?</li><li class="border border-ink/20 p-4 text-sm">Primary and secondary actions distinct?</li><li class="border border-ink/20 p-4 text-sm">Useful empty state?</li><li class="border border-ink/20 p-4 text-sm">Useful failure state?</li></ol><p class="mt-6 text-sm leading-7 text-ink/65">The final accessibility notes must cover landmarks/headings, form rules, keyboard order, contrast, empty/loading/error/success states, image alt text, known limitations, and the improvement plan.</p></article>
+      </section>
+
+      <section id="seo" class="bg-ink text-cream">
+        <div class="shell py-16 sm:py-24">
+          <p class="kicker text-mint">Block 4</p>
+          <h2 class="section-title">SEO & web performance</h2>
+          <p class="mt-5 max-w-3xl text-base leading-7 text-cream/65">Useful content, meaningful HTML, unique metadata, readable URLs, internal links, and measured performance help users and search engines understand a page.</p>
+
+          <div class="mt-12 grid gap-8 lg:grid-cols-2">
+            <article class="border-s-4 border-mint bg-white/8 p-6"><span class="tag text-ink">Slide 37 · metadata</span><h3 class="mt-4 text-2xl font-black">Course page head</h3><pre class="mt-5 overflow-x-auto bg-black/35 p-5 text-xs leading-6 text-cream"><code>&lt;title&gt;Angular Foundations — Beginner |
+  Codes Training Center&lt;/title&gt;
+&lt;meta name="description"
+  content="Learn Angular fundamentals in
+  a practical 18-hour beginner course."&gt;
+&lt;meta property="og:type" content="website"&gt;
+&lt;link rel="canonical"
+  href="https://codes-training.example/
+  courses/angular-foundations"&gt;</code></pre></article>
+
+            <article class="border-s-4 border-mint bg-white/8 p-6"><span class="tag text-ink">Slide 38 · hierarchy</span><h3 class="mt-4 text-2xl font-black">Heading outline</h3><ol class="mt-6 space-y-4 text-sm"><li><b>H1:</b> Angular Foundations</li><li class="ms-5"><b>H2:</b> What you will learn</li><li class="ms-5"><b>H2:</b> Course facts</li><li class="ms-5"><b>H2:</b> Registration</li><li class="ms-5"><b>H2:</b> Related courses</li></ol><p class="mt-6 text-sm leading-6 text-cream/65">Headings describe content; CSS controls their visual size.</p></article>
+
+            <article class="border-s-4 border-mint bg-white/8 p-6"><span class="tag text-ink">Slide 39 · URLs and links</span><h3 class="mt-4 text-2xl font-black">Orientation</h3><p class="mt-5 text-sm leading-7"><code class="bg-black/30 px-2 py-1">/courses/angular-foundations</code></p><p class="mt-4 text-sm leading-7 text-cream/65">Use readable routes, descriptive internal links, accurate search snippets, and canonical handling for duplicate content.</p></article>
+
+            <article class="border-s-4 border-mint bg-white/8 p-6"><span class="tag text-ink">Slides 40–41 · technical SEO</span><h3 class="mt-4 text-2xl font-black">Performance and Angular planning</h3><ul class="mt-5 list-disc space-y-2 ps-5 text-sm leading-6 text-cream/70"><li>Optimize and size images</li><li>Reduce blocking and unnecessary scripts</li><li>Keep meaningful public content available</li><li>Plan route-specific metadata</li><li>Measure instead of guessing</li></ul></article>
+          </div>
+
+          <article class="mt-8 border-s-4 border-mint bg-white/8 p-6"><span class="tag text-ink">Slide 42 · SEO deliverable</span><h3 class="mt-4 text-2xl font-black">Codes SEO plan</h3><div class="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-5"><p class="text-sm">Home title + description</p><p class="text-sm">Course list metadata + headings</p><p class="text-sm">Course detail metadata template</p><p class="text-sm">Readable route suggestions</p><p class="text-sm">Performance/image checklist</p></div></article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bg-cream py-9 text-ink">
+      <div class="shell flex flex-wrap items-center justify-between gap-4 text-xs">
+        <p>Codes Training Center · Day 3 HTML examples</p>
+        <a href="../README.md" class="font-black underline underline-offset-4">Return to Day 3 guide</a>
+      </div>
+    </footer>
+  </body>
+</html>

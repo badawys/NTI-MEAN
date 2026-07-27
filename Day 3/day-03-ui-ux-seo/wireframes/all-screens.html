@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>All Project Wireframes | Codes Training Center Day 3</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.3"></script>
+    <style type="text/tailwindcss">
+      @theme {
+        --color-paper: #f3f0e8;
+        --color-graphite: #202624;
+        --color-wire: #d7d5cd;
+        --color-accent: #146b53;
+        --font-sans: "Avenir Next", "Trebuchet MS", sans-serif;
+      }
+
+      @layer base {
+        html { scroll-behavior: smooth; }
+        body { @apply m-0 bg-paper text-graphite antialiased; }
+        :focus-visible { @apply outline-3 outline-offset-3 outline-accent; }
+      }
+
+      @layer components {
+        .page-shell { @apply mx-auto w-[min(100%-2rem,88rem)]; }
+        .wf-screen { @apply overflow-hidden border-2 border-graphite/65 bg-white shadow-[6px_6px_0_#202624]; }
+        .wf-topbar { @apply flex min-h-12 items-center justify-between border-b-2 border-graphite/55 px-4 text-[11px] font-black uppercase tracking-[0.12em]; }
+        .wf-nav { @apply flex flex-wrap items-center gap-2 text-[10px] font-bold text-graphite/65; }
+        .wf-label { @apply text-[10px] font-black uppercase tracking-[0.16em] text-accent; }
+        .wf-title { @apply mt-2 text-2xl font-black tracking-tight sm:text-3xl; }
+        .wf-copy { @apply mt-2 max-w-2xl text-xs leading-5 text-graphite/60; }
+        .wf-box { @apply border-2 border-graphite/40 bg-wire/20 p-4; }
+        .wf-field { @apply min-h-10 border-2 border-graphite/35 bg-white px-3 py-2 text-[11px] text-graphite/55; }
+        .wf-button { @apply inline-flex min-h-10 items-center justify-center border-2 border-graphite bg-graphite px-4 text-[10px] font-black uppercase tracking-wider text-white; }
+        .wf-button-secondary { @apply inline-flex min-h-10 items-center justify-center border-2 border-graphite bg-white px-4 text-[10px] font-black uppercase tracking-wider text-graphite; }
+        .annotation { @apply border-s-4 border-accent bg-accent/8 p-4 text-xs leading-5 text-graphite/70; }
+        .status { @apply inline-flex border-2 border-graphite/40 px-2 py-1 text-[9px] font-black uppercase tracking-wider; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <a
+      href="#main"
+      class="fixed start-4 top-4 z-50 -translate-y-24 bg-graphite px-4 py-3 text-sm font-black text-white focus:translate-y-0"
+    >
+      Skip to wireframes
+    </a>
+
+    <header class="border-b-2 border-graphite bg-paper">
+      <div class="page-shell flex flex-col gap-5 py-6 lg:flex-row lg:items-center lg:justify-between">
+        <div>
+          <p class="wf-label">Codes Training Center · Day 3</p>
+          <h1 class="mt-2 text-3xl font-black sm:text-5xl">Final-project wireframe library</h1>
+          <p class="mt-3 max-w-3xl text-sm leading-6 text-graphite/65">
+            Ten route-aligned screens showing content order, actions, responsive behavior,
+            role boundaries, and important states before visual design or Angular code.
+          </p>
+        </div>
+        <nav aria-label="Wireframe sections" class="flex max-w-xl flex-wrap gap-2 text-xs font-black">
+          <a class="border-2 border-graphite px-3 py-2 hover:bg-graphite hover:text-white" href="#public">Public</a>
+          <a class="border-2 border-graphite px-3 py-2 hover:bg-graphite hover:text-white" href="#student">Student</a>
+          <a class="border-2 border-graphite px-3 py-2 hover:bg-graphite hover:text-white" href="#admin">Admin</a>
+          <a class="border-2 border-graphite px-3 py-2 hover:bg-graphite hover:text-white" href="#states">States</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" class="page-shell py-14">
+      <section id="public" aria-labelledby="public-title">
+        <p class="wf-label">Public experience</p>
+        <h2 id="public-title" class="mt-2 text-3xl font-black sm:text-5xl">Discover, compare, decide</h2>
+
+        <div class="mt-10 space-y-16">
+          <!-- Screen 1: Home -->
+          <article>
+            <div class="mb-5 flex flex-wrap items-end justify-between gap-3">
+              <div>
+                <p class="wf-label">Screen 01 · Route /</p>
+                <h3 class="wf-title">Home</h3>
+              </div>
+              <p class="text-xs font-bold text-graphite/55">Visitor · primary goal: start course discovery</p>
+            </div>
+            <div class="wf-screen">
+              <div class="wf-topbar">
+                <span>Codes Training Center</span>
+                <div class="wf-nav"><span>Home</span><span>Courses</span><span>Login</span><span>[ Create account ]</span></div>
+              </div>
+              <div class="grid min-h-[28rem] items-center gap-8 p-6 sm:p-10 lg:grid-cols-[1.2fr_.8fr] lg:p-14">
+                <div>
+                  <p class="wf-label">Practical technology courses</p>
+                  <div class="mt-5 h-5 w-4/5 bg-graphite/85"></div>
+                  <div class="mt-3 h-5 w-3/5 bg-graphite/85"></div>
+                  <div class="mt-7 h-2 w-full max-w-lg bg-graphite/20"></div>
+                  <div class="mt-2 h-2 w-4/5 max-w-md bg-graphite/20"></div>
+                  <div class="mt-9 flex flex-wrap gap-3">
+                    <span class="wf-button">Explore courses →</span>
+                    <span class="wf-button-secondary">Create account</span>
+                  </div>
+                </div>
+                <div class="wf-box grid min-h-56 place-items-center text-center text-xs font-black uppercase tracking-widest text-graphite/40">
+                  Context image / atmosphere
+                </div>
+              </div>
+            </div>
+            <p class="annotation mt-5">
+              Mobile stacks the image after the promise and actions. The brand, one value
+              statement, one short explanation, and one primary CTA own the first viewport.
+            </p>
+          </article>
+
+          <!-- Screen 2: Course list -->
+          <article>
+            <div class="mb-5 flex flex-wrap items-end justify-between gap-3">
+              <div><p class="wf-label">Screen 02 · Route /courses</p><h3 class="wf-title">Course list</h3></div>
+              <p class="text-xs font-bold text-graphite/55">Visitor · primary goal: compare suitable courses</p>
+            </div>
+            <div class="wf-screen">
+              <div class="wf-topbar"><span>Codes</span><div class="wf-nav"><span>Home</span><strong>Courses</strong><span>Login</span></div></div>
+              <div class="p-6 sm:p-10">
+                <p class="wf-label">Course catalog</p>
+                <h4 class="wf-title">Find your next practical course</h4>
+                <div class="mt-7 grid gap-3 md:grid-cols-[1fr_14rem_auto]">
+                  <div class="wf-field">Search by course title…</div>
+                  <div class="wf-field">Level: All levels ▾</div>
+                  <div class="wf-button-secondary">Clear filters</div>
+                </div>
+                <p class="mt-5 text-xs font-bold text-graphite/55">3 courses found</p>
+                <div class="mt-3 divide-y-2 divide-graphite/25 border-y-2 border-graphite/35">
+                  <div class="grid gap-4 py-6 md:grid-cols-[4rem_1fr_auto] md:items-center">
+                    <b class="text-3xl text-graphite/25">01</b>
+                    <div><p class="wf-label">Beginner · 18 hours · 12 seats</p><h5 class="mt-2 text-xl font-black">Angular Foundations</h5><p class="wf-copy">Build accessible, component-based interfaces from practical examples.</p></div>
+                    <span class="wf-button">View details</span>
+                  </div>
+                  <div class="grid gap-4 py-6 md:grid-cols-[4rem_1fr_auto] md:items-center">
+                    <b class="text-3xl text-graphite/25">02</b>
+                    <div><p class="wf-label">Beginner · 12 hours · Full</p><h5 class="mt-2 text-xl font-black">Node API Fundamentals</h5><p class="wf-copy">Learn routing, validation, and async controller workflows.</p></div>
+                    <span class="wf-button-secondary">View details</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p class="annotation mt-5">On mobile, filters and result content stack. The empty state replaces results and offers “Clear filters”; it never leaves a blank page.</p>
+          </article>
+
+          <!-- Screen 3: Course detail -->
+          <article>
+            <div class="mb-5 flex flex-wrap items-end justify-between gap-3">
+              <div><p class="wf-label">Screen 03 · Route /courses/:id</p><h3 class="wf-title">Course detail</h3></div>
+              <p class="text-xs font-bold text-graphite/55">Visitor/student · primary goal: make a registration decision</p>
+            </div>
+            <div class="wf-screen">
+              <div class="wf-topbar"><span>Codes</span><div class="wf-nav"><span>Home</span><strong>Courses</strong><span>My registrations</span></div></div>
+              <div class="p-6 sm:p-10">
+                <p class="text-xs font-black">← Back to courses</p>
+                <div class="mt-8 grid gap-10 lg:grid-cols-[1fr_19rem]">
+                  <div>
+                    <p class="wf-label">Beginner course</p>
+                    <h4 class="wf-title">Angular Foundations</h4>
+                    <p class="wf-copy">Build accessible Angular interfaces while learning components, services, routing, forms, and API integration.</p>
+                    <div class="mt-9 border-t-2 border-graphite/30 pt-6">
+                      <h5 class="text-lg font-black">What you will learn</h5>
+                      <div class="mt-4 grid gap-3 sm:grid-cols-2">
+                        <div class="wf-box text-xs">Components and templates</div>
+                        <div class="wf-box text-xs">Routing and services</div>
+                        <div class="wf-box text-xs">Reactive forms</div>
+                        <div class="wf-box text-xs">Accessible UI states</div>
+                      </div>
+                    </div>
+                  </div>
+                  <aside class="border-s-4 border-graphite/70 ps-6">
+                    <p class="wf-label">Course facts</p>
+                    <dl class="mt-5 space-y-4 text-xs">
+                      <div><dt class="text-graphite/50">Duration</dt><dd class="mt-1 text-lg font-black">18 hours</dd></div>
+                      <div><dt class="text-graphite/50">Full capacity</dt><dd class="mt-1 text-lg font-black">30</dd></div>
+                      <div><dt class="text-graphite/50">Remaining seats</dt><dd class="mt-1 text-lg font-black">12</dd></div>
+                      <div><dt class="text-graphite/50">Level</dt><dd class="mt-1 text-lg font-black">Beginner</dd></div>
+                    </dl>
+                    <span class="wf-button mt-7 w-full">Register for course</span>
+                    <p class="mt-3 text-[10px] leading-4 text-graphite/55">Your request will be pending until an admin reviews it.</p>
+                  </aside>
+                </div>
+              </div>
+            </div>
+            <p class="annotation mt-5">On mobile, facts follow the description and precede the action. Signed-out visitors see “Sign in to register”; full courses show a text explanation instead of an enabled action.</p>
+          </article>
+
+          <!-- Screens 4 and 5: Auth -->
+          <div class="grid gap-12 lg:grid-cols-2">
+            <article>
+              <div class="mb-5"><p class="wf-label">Screen 04 · Route /login</p><h3 class="wf-title">Login</h3></div>
+              <div class="wf-screen">
+                <div class="wf-topbar"><span>Codes</span><span>Home · Courses</span></div>
+                <div class="grid min-h-[27rem] items-center gap-8 p-6 sm:p-10 md:grid-cols-2">
+                  <div><p class="wf-label">Welcome back</p><h4 class="mt-2 text-2xl font-black">Continue your learning journey</h4><p class="wf-copy">Use your account to register and track requests.</p></div>
+                  <form class="wf-box space-y-4">
+                    <h4 class="text-xl font-black">Log in</h4>
+                    <label class="block text-xs font-black">Email<div class="wf-field mt-2">name@example.com</div></label>
+                    <label class="block text-xs font-black">Password<div class="wf-field mt-2">••••••••</div></label>
+                    <div class="wf-button w-full">Log in</div>
+                    <p class="text-[10px]">No account? <u>Create one</u></p>
+                  </form>
+                </div>
+              </div>
+            </article>
+
+            <article>
+              <div class="mb-5"><p class="wf-label">Screen 05 · Route /register</p><h3 class="wf-title">Create account</h3></div>
+              <div class="wf-screen">
+                <div class="wf-topbar"><span>Codes</span><span>Home · Courses</span></div>
+                <div class="grid min-h-[27rem] items-center gap-8 p-6 sm:p-10 md:grid-cols-2">
+                  <div><p class="wf-label">Student account</p><h4 class="mt-2 text-2xl font-black">Register and track your status</h4><p class="wf-copy">Only the information needed for the MVP is requested.</p></div>
+                  <form class="wf-box space-y-3">
+                    <h4 class="text-xl font-black">Create account</h4>
+                    <label class="block text-xs font-black">Name<div class="wf-field mt-1">Your full name</div></label>
+                    <label class="block text-xs font-black">Email<div class="wf-field mt-1">name@example.com</div></label>
+                    <label class="block text-xs font-black">Password<div class="wf-field mt-1">At least 8 characters</div></label>
+                    <div class="wf-button w-full">Create account</div>
+                    <p class="text-[10px]">Already registered? <u>Log in</u></p>
+                  </form>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="student" class="mt-24 border-t-2 border-graphite/30 pt-14" aria-labelledby="student-title">
+        <p class="wf-label">Authenticated experience</p>
+        <h2 id="student-title" class="mt-2 text-3xl font-black sm:text-5xl">Profile and enrollment status</h2>
+
+        <div class="mt-10 space-y-16">
+          <!-- Screen 6: Profile -->
+          <article>
+            <div class="mb-5"><p class="wf-label">Screen 06 · Route /profile</p><h3 class="wf-title">User profile</h3></div>
+            <div class="wf-screen">
+              <div class="wf-topbar"><span>Codes</span><div class="wf-nav"><span>Courses</span><strong>Profile</strong><span>Log out</span></div></div>
+              <div class="p-6 sm:p-10">
+                <p class="wf-label">Account settings</p>
+                <h4 class="wf-title">Your profile</h4>
+                <p class="wf-copy">Update account details or change your password in separate workflows.</p>
+                <div class="mt-8 grid gap-7 lg:grid-cols-2">
+                  <form class="wf-box space-y-4"><h5 class="text-xl font-black">Account details</h5><label class="block text-xs font-black">Name<div class="wf-field mt-2">Mona Ali</div></label><label class="block text-xs font-black">Email<div class="wf-field mt-2">mona@example.com</div></label><div class="wf-button">Save changes</div><p class="text-[10px]">Success/error feedback appears here.</p></form>
+                  <form class="wf-box space-y-4"><h5 class="text-xl font-black">Password security</h5><label class="block text-xs font-black">Current password<div class="wf-field mt-2">••••••••</div></label><label class="block text-xs font-black">New password<div class="wf-field mt-2">At least 8 characters</div></label><div class="wf-button">Change password</div><p class="text-[10px]">Changing password does not submit profile details.</p></form>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Screen 7: My registrations -->
+          <article>
+            <div class="mb-5"><p class="wf-label">Screen 07 · Route /my-registrations</p><h3 class="wf-title">My registrations</h3></div>
+            <div class="wf-screen">
+              <div class="wf-topbar"><span>Codes</span><div class="wf-nav"><span>Courses</span><strong>My registrations</strong><span>Profile</span></div></div>
+              <div class="p-6 sm:p-10">
+                <p class="wf-label">Student status</p>
+                <h4 class="wf-title">My registrations</h4>
+                <div class="mt-8 divide-y-2 divide-graphite/25 border-y-2 border-graphite/35">
+                  <div class="grid gap-4 py-6 sm:grid-cols-[1fr_auto] sm:items-center"><div><h5 class="text-xl font-black">Angular Foundations</h5><p class="mt-2 text-xs text-graphite/55">Registered 24 July 2026</p></div><span class="status">Pending · awaiting review</span></div>
+                  <div class="grid gap-4 py-6 sm:grid-cols-[1fr_auto] sm:items-center"><div><h5 class="text-xl font-black">JavaScript Essentials</h5><p class="mt-2 text-xs text-graphite/55">Registered 12 July 2026</p></div><span class="status">Confirmed · seat reserved</span></div>
+                </div>
+                <div class="mt-8 wf-box"><p class="text-xs"><strong>Empty state:</strong> You have no registrations yet.</p><span class="wf-button mt-4">Explore courses</span></div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="admin" class="mt-24 border-t-2 border-graphite/30 pt-14" aria-labelledby="admin-title">
+        <p class="wf-label">Operational experience</p>
+        <h2 id="admin-title" class="mt-2 text-3xl font-black sm:text-5xl">Admin and manager workflows</h2>
+
+        <div class="mt-10 space-y-16">
+          <!-- Screen 8: Dashboard -->
+          <article>
+            <div class="mb-5"><p class="wf-label">Screen 08 · Route /admin</p><h3 class="wf-title">Operational dashboard</h3></div>
+            <div class="wf-screen">
+              <div class="wf-topbar"><span>Codes Admin</span><div class="wf-nav"><strong>Dashboard</strong><span>Courses</span><span>Enrollments</span><span>Profile</span></div></div>
+              <div class="p-6 sm:p-10">
+                <p class="wf-label">Operations overview</p>
+                <h4 class="wf-title">What needs attention today?</h4>
+                <div class="mt-8 grid border-y-2 border-graphite/35 sm:grid-cols-2 lg:grid-cols-4">
+                  <div class="border-b-2 border-graphite/25 p-5 lg:border-b-0 lg:border-e-2"><p class="text-[10px] uppercase">Total courses</p><b class="mt-3 block text-4xl">12</b></div>
+                  <div class="border-b-2 border-graphite/25 p-5 lg:border-b-0 lg:border-e-2"><p class="text-[10px] uppercase">Published</p><b class="mt-3 block text-4xl">8</b></div>
+                  <div class="border-b-2 border-graphite/25 p-5 sm:border-b-0 lg:border-e-2"><p class="text-[10px] uppercase">Enrollments</p><b class="mt-3 block text-4xl">76</b></div>
+                  <div class="p-5"><p class="text-[10px] uppercase">Pending review</p><b class="mt-3 block text-4xl">9</b></div>
+                </div>
+                <div class="mt-8 flex flex-wrap gap-3"><span class="wf-button">Review pending enrollments</span><span class="wf-button-secondary">Manage courses</span></div>
+                <p class="annotation mt-7"><strong>Manager mode:</strong> course-management action is removed; enrollment review is labeled read-only.</p>
+              </div>
+            </div>
+          </article>
+
+          <!-- Screen 9: Manage courses -->
+          <article>
+            <div class="mb-5"><p class="wf-label">Screen 09 · Route /admin/courses</p><h3 class="wf-title">Manage courses</h3></div>
+            <div class="wf-screen">
+              <div class="wf-topbar"><span>Codes Admin</span><div class="wf-nav"><span>Dashboard</span><strong>Courses</strong><span>Enrollments</span></div></div>
+              <div class="p-6 sm:p-10">
+                <p class="wf-label">Catalog operations</p>
+                <h4 class="wf-title">Manage courses</h4>
+                <div class="mt-8 grid gap-8 xl:grid-cols-[22rem_1fr]">
+                  <form class="wf-box space-y-3">
+                    <div class="flex items-center justify-between gap-3"><h5 class="text-xl font-black">Add course</h5><span class="status">Create mode</span></div>
+                    <label class="block text-xs font-black">English title<div class="wf-field mt-1"></div></label>
+                    <label class="block text-xs font-black">Arabic title<div class="wf-field mt-1"></div></label>
+                    <label class="block text-xs font-black">Summary<div class="wf-field mt-1 min-h-16"></div></label>
+                    <div class="grid grid-cols-2 gap-3"><label class="block text-xs font-black">Hours<div class="wf-field mt-1">18</div></label><label class="block text-xs font-black">Capacity<div class="wf-field mt-1">30</div></label></div>
+                    <div class="wf-button w-full">Save course</div>
+                  </form>
+                  <div class="divide-y-2 divide-graphite/25 border-y-2 border-graphite/35">
+                    <div class="grid gap-4 py-5 sm:grid-cols-[1fr_auto]"><div><h5 class="text-lg font-black">Angular Foundations</h5><p class="mt-1 text-xs text-graphite/55">Published · capacity 30</p></div><div class="flex gap-2"><span class="wf-button-secondary">Edit</span><span class="wf-button-secondary">Archive</span></div></div>
+                    <div class="grid gap-4 py-5 sm:grid-cols-[1fr_auto]"><div><h5 class="text-lg font-black">Node API Fundamentals</h5><p class="mt-1 text-xs text-graphite/55">Draft · capacity 20</p></div><div class="flex gap-2"><span class="wf-button-secondary">Edit</span><span class="wf-button-secondary">Archive</span></div></div>
+                    <div class="grid gap-4 py-5 opacity-60 sm:grid-cols-[1fr_auto]"><div><h5 class="text-lg font-black">MongoDB Basics</h5><p class="mt-1 text-xs">Archived · hidden from public catalog</p></div><span class="wf-button-secondary">Unarchive</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p class="annotation mt-5">Mobile places the complete form before the list. Edit mode changes the heading, fills current values, and adds a visible Cancel edit action.</p>
+          </article>
+
+          <!-- Screen 10: Enrollment review -->
+          <article>
+            <div class="mb-5"><p class="wf-label">Screen 10 · Route /admin/enrollments</p><h3 class="wf-title">Review enrollments</h3></div>
+            <div class="wf-screen">
+              <div class="wf-topbar"><span>Codes Admin</span><div class="wf-nav"><span>Dashboard</span><span>Courses</span><strong>Enrollments</strong></div></div>
+              <div class="p-6 sm:p-10">
+                <p class="wf-label">Enrollment queue</p>
+                <h4 class="wf-title">Review enrollment requests</h4>
+                <div class="mt-7 grid gap-3 md:grid-cols-3"><div class="wf-field">Status: Pending ▾</div><div class="wf-field">Course: All ▾</div><div class="wf-field">Date: Newest first ▾</div></div>
+
+                <div class="mt-7 hidden overflow-x-auto md:block">
+                  <table class="w-full min-w-[56rem] border-y-2 border-graphite/40 text-left text-xs">
+                    <thead><tr class="text-[10px] uppercase tracking-wider text-graphite/55"><th class="p-4">Student</th><th class="p-4">Course</th><th class="p-4">Date</th><th class="p-4">Status</th><th class="p-4">Action</th></tr></thead>
+                    <tbody><tr class="border-t-2 border-graphite/20"><td class="p-4"><b>Mona Ali</b><br><span class="text-graphite/50">mona@example.com</span></td><td class="p-4">Angular Foundations</td><td class="p-4">24 Jul 2026</td><td class="p-4"><span class="status">Pending</span></td><td class="p-4"><div class="flex gap-2"><span class="wf-field min-w-28">Confirmed ▾</span><span class="wf-button-secondary">Save</span></div></td></tr></tbody>
+                  </table>
+                </div>
+
+                <div class="mt-7 space-y-4 md:hidden">
+                  <article class="wf-box">
+                    <dl class="grid grid-cols-[7rem_1fr] gap-3 text-xs"><dt class="font-black">Student</dt><dd>Mona Ali<br><span class="text-graphite/50">mona@example.com</span></dd><dt class="font-black">Course</dt><dd>Angular Foundations</dd><dt class="font-black">Date</dt><dd>24 Jul 2026</dd><dt class="font-black">Status</dt><dd><span class="status">Pending</span></dd></dl>
+                    <div class="mt-5 grid grid-cols-[1fr_auto] gap-2"><div class="wf-field">Confirmed ▾</div><span class="wf-button-secondary">Save</span></div>
+                  </article>
+                </div>
+                <p class="annotation mt-7"><strong>Safe action:</strong> saving a new status opens a confirmation that names the student, course, old status, and new status before mutation.</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="states" class="mt-24 border-t-2 border-graphite/30 pt-14" aria-labelledby="states-title">
+        <p class="wf-label">Shared UI states</p>
+        <h2 id="states-title" class="mt-2 text-3xl font-black sm:text-5xl">Never design only the happy path</h2>
+        <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div class="wf-box"><p class="wf-label">Loading</p><div class="mt-4 h-3 w-4/5 animate-pulse bg-graphite/25"></div><div class="mt-2 h-3 w-2/3 animate-pulse bg-graphite/15"></div></div>
+          <div class="wf-box"><p class="wf-label">Empty</p><h3 class="mt-3 font-black">No courses match</h3><p class="wf-copy">Clear filters or search again.</p></div>
+          <div class="wf-box"><p class="wf-label">Error</p><h3 class="mt-3 font-black">Could not load courses</h3><p class="wf-copy">Check your connection and retry.</p></div>
+          <div class="wf-box"><p class="wf-label">Success</p><h3 class="mt-3 font-black">Registration received</h3><p class="wf-copy">Status: pending admin review.</p></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="mt-20 border-t-2 border-graphite bg-graphite py-8 text-white">
+      <div class="page-shell flex flex-wrap items-center justify-between gap-4 text-xs">
+        <p>Codes Training Center · Day 3 wireframes</p>
+        <a href="../README.md" class="font-black underline underline-offset-4">Return to Day 3 guide</a>
+      </div>
+    </footer>
+  </body>
+</html>

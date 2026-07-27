@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <!--
+      INTENTIONALLY BAD:
+      - no viewport metadata;
+      - vague, duplicated title;
+      - no meta description, canonical URL, Open Graph, or robots plan;
+      - Tailwind is used without responsive prefixes or a content strategy.
+    -->
+    <title>Course Page Course Course</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.3"></script>
+  </head>
+  <body class="m-0 bg-[#ffff00] font-[Arial] text-[#a7a700]">
+    <!--
+      This page deliberately demonstrates poor UX and accessibility. Do not copy
+      these patterns into a real application.
+    -->
+    <div class="mx-auto w-[1180px] border-[12px] border-dashed border-red-500 bg-white p-[14px]">
+      <div class="flex h-[55px] items-center justify-between bg-[#00ffff] px-2">
+        <span class="text-[13px]">LOGO logo codes maybe</span>
+        <div class="flex gap-1 text-[11px]">
+          <span class="bg-red-500 p-1 text-blue-700">CLICK HOME</span>
+          <span class="bg-green-400 p-1 text-purple-700">COURSES</span>
+          <span class="bg-pink-400 p-1 text-orange-700">LOGIN</span>
+          <span class="bg-black p-1 text-black">REGISTER</span>
+        </div>
+      </div>
+
+      <marquee class="mt-2 bg-red-600 text-[11px] text-green-300">
+        IMPORTANT AMAZING COURSE BUY REGISTER NOW LIMITED LIMITED LIMITED!!!
+      </marquee>
+
+      <div class="mt-2 grid grid-cols-[220px_1fr_180px] gap-1">
+        <aside class="bg-[#ff00ff] p-2 text-[10px] text-[#ff9999]">
+          <h1 class="text-[16px]">MENU MENU</h1>
+          <p>Angular</p><p>Node</p><p>Mongo</p><p>Express</p>
+          <p class="mt-8">Advertisement placeholder advertisement placeholder</p>
+        </aside>
+
+        <main class="bg-[#eeeeee] p-2">
+          <!-- Multiple H1 elements and meaningless heading order are intentional. -->
+          <h1 class="text-center text-[18px] font-normal">COURSE DETAILS PAGE</h1>
+          <h1 class="text-[50px] leading-none text-blue-600 underline">ANGULAR!!!</h1>
+          <h3 class="text-[12px]">Best course ever best course ever best course ever</h3>
+
+          <p class="w-[780px] text-[11px] leading-[12px] text-[#aaaaaa]">
+            Welcome to the angular course where we teach everything and it is good
+            and you should register because it is the best. This description does
+            not answer what students will learn, when the course starts, or whether
+            it is suitable for them.
+          </p>
+
+          <div class="mt-2 flex items-center justify-between bg-orange-300 p-1">
+            <span>Hours: 18</span>
+            <span>Capacity maybe 30</span>
+            <span class="text-red-400">Seats: 12</span>
+            <span>Level beginner?</span>
+          </div>
+
+          <!-- A div pretending to be a button is not keyboard-operable. -->
+          <div
+            onclick="document.getElementById('bad-form').style.display='block'"
+            class="mt-2 w-[95px] cursor-pointer bg-green-400 p-1 text-center text-[10px] text-yellow-300"
+          >
+            CLICK HERE
+          </div>
+
+          <div id="bad-form" class="mt-2 hidden bg-pink-100 p-2">
+            <!-- Inputs have no labels; placeholder text is not a label. -->
+            <input class="border-0 bg-gray-100 text-[10px]" placeholder="stuff" />
+            <input class="ms-1 border-0 bg-gray-100 text-[10px]" placeholder="other stuff" />
+            <div class="mt-1 inline-block bg-red-400 p-1 text-[9px]">SUBMIT NOW</div>
+          </div>
+
+          <h4 class="mt-2 text-[13px]">Everything you learn</h4>
+          <p class="text-[10px]">
+            HTML CSS JS TS ANGULAR API FORMS ROUTING DATABASE CLOUD SECURITY AI
+            EVERYTHING EVERYTHING EVERYTHING
+          </p>
+        </main>
+
+        <aside class="bg-[#00ff00] p-2 text-[9px] text-[#66aa66]">
+          <h1 class="text-[15px]">Important</h1>
+          <p>Seats are limited but no clear status is available.</p>
+          <p>Call us maybe if the form fails.</p>
+          <p class="mt-20">Related unrelated content and more buttons.</p>
+          <div class="bg-yellow-200 p-1">GO</div>
+          <div class="mt-1 bg-blue-200 p-1">MORE</div>
+          <div class="mt-1 bg-red-200 p-1">ACTION</div>
+        </aside>
+      </div>
+
+      <footer class="mt-1 bg-black p-1 text-[8px] text-gray-700">
+        copyright and lots of links privacy terms random keyword angular angular
+        angular course egypt angular training course best angular
+      </footer>
+    </div>
+  </body>
+</html>
