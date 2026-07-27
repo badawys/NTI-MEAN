@@ -33,6 +33,8 @@ day-03-ui-ux-seo/
 │   └── 04-accessibility-and-seo-checklist.md
 ├── examples/
 │   └── slide-examples.html
+├── design-system/
+│   └── full-design-system.html
 ├── seo/
 │   └── seo-course-page.html
 └── comparison/
@@ -50,11 +52,12 @@ the Tailwind CSS 4 browser build from jsDelivr.
 Recommended order:
 
 1. `examples/slide-examples.html`
-2. `wireframes/all-screens.html`
-3. `comparison/bad-course-detail.html`
-4. `comparison/good-course-detail-wireframe.html`
-5. `comparison/good-course-detail.html`
-6. `seo/seo-course-page.html`
+2. `design-system/full-design-system.html`
+3. `wireframes/all-screens.html`
+4. `comparison/bad-course-detail.html`
+5. `comparison/good-course-detail-wireframe.html`
+6. `comparison/good-course-detail.html`
+7. `seo/seo-course-page.html`
 
 The Tailwind browser build is appropriate for these classroom prototypes because
 it keeps every example runnable without a build step. It is not intended for a

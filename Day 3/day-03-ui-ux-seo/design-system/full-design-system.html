@@ -1,0 +1,610 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>Codes Training Center — Complete Design System</title>
+    <meta
+      name="description"
+      content="Complete student-facing design-system reference for the Codes Training Center final project."
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.3"></script>
+    <style type="text/tailwindcss">
+      @theme {
+        /* Exact final-project brand colors. */
+        --color-cream: #f5f0e7;
+        --color-ink: #12211d;
+        --color-coral: #ef5b3f;
+        --color-mint: #87d8bc;
+
+        /* Supporting tokens extend the core palette without replacing it. */
+        --color-coral-dark: #d9482f;
+        --color-mint-soft: #ddf4eb;
+        --color-paper: #faf8f3;
+        --color-line: #d9d7d0;
+        --color-muted: #69736f;
+        --color-success: #2f7d60;
+        --color-success-soft: #e0f3eb;
+        --color-warning: #9a5b14;
+        --color-warning-soft: #fbedd5;
+        --color-danger: #b93620;
+        --color-danger-soft: #f9e4df;
+        --color-info: #2d6687;
+        --color-info-soft: #e0eef5;
+
+        --font-display: "Avenir Next", "Trebuchet MS", sans-serif;
+        --font-sans: "Avenir Next", "Trebuchet MS", sans-serif;
+      }
+
+      @layer base {
+        html { scroll-behavior: smooth; }
+        body { @apply m-0 bg-cream text-ink antialiased; }
+        button, a, input, textarea, select {
+          @apply transition duration-200;
+        }
+        :focus-visible { @apply outline-3 outline-offset-3 outline-mint; }
+        ::selection { @apply bg-mint text-ink; }
+        dialog::backdrop { background: rgb(18 33 29 / .72); }
+      }
+
+      @layer components {
+        .shell { @apply mx-auto w-[min(100%-2rem,82rem)]; }
+        .section-kicker { @apply text-xs font-black uppercase tracking-[.22em] text-coral; }
+        .section-heading { @apply mt-3 max-w-4xl font-display text-4xl leading-none font-black tracking-tight sm:text-6xl; }
+        .section-copy { @apply mt-5 max-w-3xl text-base leading-7 text-ink/65; }
+        .spec-section { @apply scroll-mt-24 border-t border-ink/15 py-14 sm:py-20; }
+        .specimen { @apply border-s-4 border-coral bg-white/55 p-5 sm:p-7; }
+        .token-label { @apply text-[10px] font-black uppercase tracking-[.16em] text-ink/50; }
+
+        .primary-button { @apply inline-flex min-h-12 items-center justify-center gap-2 bg-coral px-5 font-black text-white hover:-translate-y-0.5 hover:bg-coral-dark disabled:cursor-not-allowed disabled:opacity-50; }
+        .secondary-button { @apply inline-flex min-h-12 items-center justify-center gap-2 border-2 border-ink px-5 font-black text-ink hover:-translate-y-0.5 hover:bg-ink hover:text-cream; }
+        .text-button { @apply inline-flex min-h-11 items-center justify-center gap-2 px-3 font-black text-ink hover:text-coral; }
+        .danger-button { @apply inline-flex min-h-12 items-center justify-center gap-2 bg-danger px-5 font-black text-white hover:bg-ink; }
+        .icon-button { @apply grid size-11 place-items-center border border-ink/25 bg-transparent font-black hover:bg-ink hover:text-cream; }
+
+        .form-label { @apply block text-xs font-black uppercase tracking-[.08em] text-ink; }
+        .form-hint { @apply mt-2 text-xs leading-5 text-ink/55; }
+        .form-input { @apply mt-2 min-h-12 w-full border border-ink/25 bg-white/75 px-4 text-base focus:border-coral focus:outline-coral; }
+        .field-error { @apply mt-2 text-sm font-bold text-danger; }
+
+        .status-label { @apply inline-flex w-fit items-center gap-2 bg-ink/8 px-3 py-1.5 text-[10px] font-black uppercase tracking-[.12em]; }
+        .alert { @apply border-s-4 p-4 text-sm leading-6; }
+        .course-row { @apply grid gap-5 border-t border-ink/15 py-7 sm:grid-cols-[4rem_1fr_auto] sm:items-center; }
+        .metric { @apply border-b border-ink/15 p-6 sm:border-e; }
+        .metric dt { @apply text-[10px] font-black uppercase tracking-[.14em] text-ink/50; }
+        .metric dd { @apply mt-3 font-display text-5xl font-black text-coral; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <a
+      href="#main"
+      class="fixed start-4 top-4 z-50 -translate-y-24 bg-ink px-4 py-3 text-sm font-black text-white focus:translate-y-0"
+    >
+      Skip to design system
+    </a>
+
+    <!-- This reference header demonstrates the real final-project navigation language. -->
+    <header class="sticky top-0 z-40 border-b border-ink/10 bg-cream/95 backdrop-blur-xl">
+      <nav class="shell flex min-h-20 items-center justify-between gap-4" aria-label="Design system navigation">
+        <a href="#overview" class="group flex items-center gap-3" aria-label="Codes design system home">
+          <span class="grid size-11 rotate-3 place-items-center bg-coral font-display text-xl font-black text-white group-hover:rotate-0">C</span>
+          <span>
+            <strong class="block font-display text-xl leading-none">Codes</strong>
+            <span class="block text-[10px] font-semibold uppercase tracking-[.16em] text-ink/55">Design system</span>
+          </span>
+        </a>
+        <div class="hidden items-center gap-6 text-sm font-black lg:flex">
+          <a href="#foundations" class="hover:text-coral">Foundations</a>
+          <a href="#actions" class="hover:text-coral">Actions</a>
+          <a href="#forms" class="hover:text-coral">Forms</a>
+          <a href="#content" class="hover:text-coral">Content</a>
+          <a href="#data" class="hover:text-coral">Data</a>
+          <a href="#feedback" class="hover:text-coral">Feedback</a>
+        </div>
+        <a href="../README.md" class="secondary-button hidden min-h-10 px-4 text-xs sm:inline-flex">Day 3 guide</a>
+      </nav>
+      <nav class="shell flex gap-5 overflow-x-auto border-t border-ink/10 py-2 text-xs font-black lg:hidden" aria-label="Mobile component navigation">
+        <a href="#foundations" class="whitespace-nowrap">Foundations</a>
+        <a href="#actions" class="whitespace-nowrap">Actions</a>
+        <a href="#forms" class="whitespace-nowrap">Forms</a>
+        <a href="#content" class="whitespace-nowrap">Content</a>
+        <a href="#data" class="whitespace-nowrap">Data</a>
+        <a href="#feedback" class="whitespace-nowrap">Feedback</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section id="overview" class="relative overflow-hidden bg-ink text-cream">
+        <div class="absolute inset-0 opacity-20" style="background-image:linear-gradient(rgba(245,240,231,.22) 1px,transparent 1px),linear-gradient(90deg,rgba(245,240,231,.22) 1px,transparent 1px);background-size:64px 64px" aria-hidden="true"></div>
+        <div class="absolute -bottom-44 -right-32 size-[30rem] rounded-full bg-coral/70 blur-3xl" aria-hidden="true"></div>
+        <div class="shell relative py-20 sm:py-28">
+          <p class="section-kicker text-mint">Codes Training Center · v1.0</p>
+          <h1 class="mt-5 max-w-5xl font-display text-5xl leading-[.92] font-black tracking-tight sm:text-8xl">
+            Complete final-project design system
+          </h1>
+          <p class="mt-7 max-w-2xl text-lg leading-8 text-cream/70">
+            Tokens, components, states, responsive rules, and accessibility
+            contracts for public, student, admin, and manager experiences.
+          </p>
+          <div class="mt-9 flex flex-wrap gap-3">
+            <a href="#foundations" class="primary-button">Explore foundations →</a>
+            <a href="#component-index" class="secondary-button border-cream text-cream hover:bg-cream hover:text-ink">Component index</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="component-index" class="shell py-12">
+        <p class="section-kicker">Reference map</p>
+        <h2 class="mt-3 font-display text-3xl font-black">Component index</h2>
+        <div class="mt-6 grid gap-x-8 gap-y-3 text-sm sm:grid-cols-2 lg:grid-cols-4">
+          <a class="border-t border-ink/15 py-3 font-black hover:text-coral" href="#palette">Color palette</a>
+          <a class="border-t border-ink/15 py-3 font-black hover:text-coral" href="#type">Typography</a>
+          <a class="border-t border-ink/15 py-3 font-black hover:text-coral" href="#spacing">Spacing & elevation</a>
+          <a class="border-t border-ink/15 py-3 font-black hover:text-coral" href="#buttons">Buttons</a>
+          <a class="border-t border-ink/15 py-3 font-black hover:text-coral" href="#links">Links & breadcrumbs</a>
+          <a class="border-t border-ink/15 py-3 font-black hover:text-coral" href="#navigation">Navigation</a>
+          <a class="border-t border-ink/15 py-3 font-black hover:text-coral" href="#form-controls">Form controls</a>
+          <a class="border-t border-ink/15 py-3 font-black hover:text-coral" href="#validation">Validation</a>
+          <a class="border-t border-ink/15 py-3 font-black hover:text-coral" href="#course-components">Course content</a>
+          <a class="border-t border-ink/15 py-3 font-black hover:text-coral" href="#metrics">Metrics</a>
+          <a class="border-t border-ink/15 py-3 font-black hover:text-coral" href="#statuses">Statuses</a>
+          <a class="border-t border-ink/15 py-3 font-black hover:text-coral" href="#tables">Tables</a>
+          <a class="border-t border-ink/15 py-3 font-black hover:text-coral" href="#alerts">Alerts</a>
+          <a class="border-t border-ink/15 py-3 font-black hover:text-coral" href="#states">Loading & empty states</a>
+          <a class="border-t border-ink/15 py-3 font-black hover:text-coral" href="#dialogs">Dialog & toast</a>
+          <a class="border-t border-ink/15 py-3 font-black hover:text-coral" href="#responsive">Responsive rules</a>
+        </div>
+      </section>
+
+      <div class="shell">
+        <section id="foundations" class="spec-section">
+          <p class="section-kicker">01 · Foundations</p>
+          <h2 class="section-heading">Brand tokens create one visual language.</h2>
+          <p class="section-copy">Use the four core colors first. Supporting colors exist for hierarchy and semantic feedback, not decoration.</p>
+
+          <section id="palette" class="mt-12 scroll-mt-24" aria-labelledby="palette-title">
+            <h3 id="palette-title" class="font-display text-3xl font-black">Complete color palette</h3>
+
+            <h4 class="mt-8 text-sm font-black uppercase tracking-[.14em]">Core brand colors</h4>
+            <div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              <article class="overflow-hidden border border-ink/15 bg-white">
+                <div class="h-32 bg-cream"></div>
+                <div class="p-4"><strong>Cream</strong><code class="mt-1 block text-xs text-ink/55">#F5F0E7</code><p class="mt-3 text-xs leading-5 text-ink/60">Primary page background and light surfaces.</p></div>
+              </article>
+              <article class="overflow-hidden border border-ink/15 bg-white">
+                <div class="h-32 bg-ink"></div>
+                <div class="p-4"><strong>Ink</strong><code class="mt-1 block text-xs text-ink/55">#12211D</code><p class="mt-3 text-xs leading-5 text-ink/60">Text, dark surfaces, strong borders.</p></div>
+              </article>
+              <article class="overflow-hidden border border-ink/15 bg-white">
+                <div class="h-32 bg-coral"></div>
+                <div class="p-4"><strong>Coral</strong><code class="mt-1 block text-xs text-ink/55">#EF5B3F</code><p class="mt-3 text-xs leading-5 text-ink/60">Primary actions and brand emphasis.</p></div>
+              </article>
+              <article class="overflow-hidden border border-ink/15 bg-white">
+                <div class="h-32 bg-mint"></div>
+                <div class="p-4"><strong>Mint</strong><code class="mt-1 block text-xs text-ink/55">#87D8BC</code><p class="mt-3 text-xs leading-5 text-ink/60">Focus, positive support, selection.</p></div>
+              </article>
+            </div>
+
+            <h4 class="mt-10 text-sm font-black uppercase tracking-[.14em]">Neutral and surface colors</h4>
+            <div class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              <div class="border border-ink/15 bg-paper p-5"><b>Paper</b><code class="mt-1 block text-xs">#FAF8F3</code></div>
+              <div class="border border-ink/15 bg-white p-5"><b>White</b><code class="mt-1 block text-xs">#FFFFFF</code></div>
+              <div class="border border-ink/15 bg-line p-5"><b>Line</b><code class="mt-1 block text-xs">#D9D7D0</code></div>
+              <div class="border border-ink/15 bg-muted p-5 text-white"><b>Muted</b><code class="mt-1 block text-xs">#69736F</code></div>
+            </div>
+
+            <h4 class="mt-10 text-sm font-black uppercase tracking-[.14em]">Semantic colors</h4>
+            <div class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              <div class="border-s-8 border-success bg-success-soft p-5"><b class="text-success">Success</b><code class="mt-1 block text-xs">#2F7D60 / #E0F3EB</code></div>
+              <div class="border-s-8 border-warning bg-warning-soft p-5"><b class="text-warning">Warning</b><code class="mt-1 block text-xs">#9A5B14 / #FBEDD5</code></div>
+              <div class="border-s-8 border-danger bg-danger-soft p-5"><b class="text-danger">Danger</b><code class="mt-1 block text-xs">#B93620 / #F9E4DF</code></div>
+              <div class="border-s-8 border-info bg-info-soft p-5"><b class="text-info">Information</b><code class="mt-1 block text-xs">#2D6687 / #E0EEF5</code></div>
+            </div>
+
+            <div class="mt-8 bg-ink p-6 text-cream">
+              <p class="token-label text-mint">Contrast contract</p>
+              <p class="mt-3 max-w-3xl text-sm leading-6 text-cream/75">
+                Use Ink on Cream/White, Cream on Ink, and White on Coral/Danger.
+                Mint is a focus/support color and should not carry small white text.
+                Semantic meaning must always include text or an icon—not color alone.
+              </p>
+            </div>
+          </section>
+
+          <section id="type" class="mt-16 scroll-mt-24" aria-labelledby="type-title">
+            <h3 id="type-title" class="font-display text-3xl font-black">Typography</h3>
+            <div class="mt-7 divide-y divide-ink/15 border-y border-ink/15">
+              <div class="grid gap-4 py-7 md:grid-cols-[12rem_1fr]"><div><p class="token-label">Display · 72/68</p><code class="text-xs">text-7xl font-black</code></div><p class="font-display text-5xl leading-[.94] font-black sm:text-7xl">Learn by building.</p></div>
+              <div class="grid gap-4 py-7 md:grid-cols-[12rem_1fr]"><div><p class="token-label">Page title · fluid</p><code class="text-xs">text-5xl sm:text-6xl</code></div><p class="font-display text-4xl leading-none font-black sm:text-6xl">Available courses</p></div>
+              <div class="grid gap-4 py-7 md:grid-cols-[12rem_1fr]"><div><p class="token-label">Section · 36/40</p><code class="text-xs">text-4xl font-black</code></div><p class="font-display text-4xl font-black">Course outcomes</p></div>
+              <div class="grid gap-4 py-7 md:grid-cols-[12rem_1fr]"><div><p class="token-label">Component · 24/32</p><code class="text-xs">text-2xl font-black</code></div><p class="font-display text-2xl font-black">Angular Foundations</p></div>
+              <div class="grid gap-4 py-7 md:grid-cols-[12rem_1fr]"><div><p class="token-label">Body · 16/28</p><code class="text-xs">text-base leading-7</code></div><p class="max-w-2xl text-base leading-7 text-ink/70">Body content uses comfortable line height and a limited reading width so explanations remain easy to scan.</p></div>
+              <div class="grid gap-4 py-7 md:grid-cols-[12rem_1fr]"><div><p class="token-label">Label · 12/16</p><code class="text-xs">text-xs tracking</code></div><p class="section-kicker">Codes Training Center</p></div>
+            </div>
+          </section>
+
+          <section id="spacing" class="mt-16 scroll-mt-24" aria-labelledby="spacing-title">
+            <h3 id="spacing-title" class="font-display text-3xl font-black">Spacing, shape, and elevation</h3>
+            <div class="mt-7 grid gap-8 lg:grid-cols-2">
+              <div class="specimen">
+                <p class="token-label">Spacing scale</p>
+                <div class="mt-6 space-y-4 text-xs font-black">
+                  <div class="flex items-center gap-4"><span class="w-20">4 · 1rem</span><span class="h-3 w-4 bg-coral"></span></div>
+                  <div class="flex items-center gap-4"><span class="w-20">6 · 1.5rem</span><span class="h-3 w-6 bg-coral"></span></div>
+                  <div class="flex items-center gap-4"><span class="w-20">8 · 2rem</span><span class="h-3 w-8 bg-coral"></span></div>
+                  <div class="flex items-center gap-4"><span class="w-20">12 · 3rem</span><span class="h-3 w-12 bg-coral"></span></div>
+                  <div class="flex items-center gap-4"><span class="w-20">16 · 4rem</span><span class="h-3 w-16 bg-coral"></span></div>
+                  <div class="flex items-center gap-4"><span class="w-20">24 · 6rem</span><span class="h-3 w-24 bg-coral"></span></div>
+                </div>
+              </div>
+              <div class="specimen">
+                <p class="token-label">Shape and shadow</p>
+                <div class="mt-6 grid grid-cols-2 gap-4">
+                  <div class="border border-ink/20 bg-white p-5"><b>Square</b><p class="mt-2 text-xs text-ink/55">Default actions, fields, rows</p></div>
+                  <div class="rounded-full border border-ink/20 bg-white p-5"><b>Pill</b><p class="mt-2 text-xs text-ink/55">Status and compact metadata</p></div>
+                  <div class="rounded-lg border border-ink/20 bg-white p-5"><b>Rounded</b><p class="mt-2 text-xs text-ink/55">Dialog and optional panels</p></div>
+                  <div class="bg-white p-5 shadow-xl"><b>Elevated</b><p class="mt-2 text-xs text-ink/55">Temporary overlay only</p></div>
+                </div>
+                <p class="mt-5 text-xs leading-5 text-ink/60">Default surfaces stay flat. Elevation communicates layering, not decoration.</p>
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <section id="actions" class="spec-section">
+          <p class="section-kicker">02 · Actions & navigation</p>
+          <h2 class="section-heading">Actions communicate priority and consequence.</h2>
+
+          <section id="buttons" class="mt-12 scroll-mt-24" aria-labelledby="buttons-title">
+            <h3 id="buttons-title" class="font-display text-3xl font-black">Buttons</h3>
+            <div class="mt-7 grid gap-8 lg:grid-cols-2">
+              <div class="specimen">
+                <p class="token-label">Core variants</p>
+                <div class="mt-6 flex flex-wrap items-center gap-4">
+                  <button class="primary-button" type="button">Primary action</button>
+                  <button class="secondary-button" type="button">Secondary</button>
+                  <button class="text-button" type="button">Text action →</button>
+                  <button class="danger-button" type="button">Archive</button>
+                  <button class="icon-button" type="button" aria-label="More options">•••</button>
+                </div>
+              </div>
+              <div class="specimen">
+                <p class="token-label">States</p>
+                <div class="mt-6 flex flex-wrap items-center gap-4">
+                  <button class="primary-button" type="button">Default</button>
+                  <button class="primary-button" type="button" disabled>Disabled</button>
+                  <button id="loading-button" class="primary-button" type="button">
+                    <span id="loading-icon" class="hidden size-4 animate-spin rounded-full border-2 border-white/45 border-t-white" aria-hidden="true"></span>
+                    <span id="loading-label">Show loading</span>
+                  </button>
+                </div>
+                <p class="mt-5 text-xs leading-5 text-ink/60">Use one primary action per decision area. Loading buttons retain their label context and prevent duplicate submission.</p>
+              </div>
+            </div>
+          </section>
+
+          <section id="links" class="mt-16 scroll-mt-24" aria-labelledby="links-title">
+            <h3 id="links-title" class="font-display text-3xl font-black">Links and breadcrumbs</h3>
+            <div class="mt-7 specimen">
+              <div class="flex flex-wrap items-center gap-6">
+                <a href="#" class="font-black text-coral underline decoration-2 underline-offset-4">Inline link</a>
+                <a href="#" class="font-black hover:text-coral">Navigation link</a>
+                <a href="#" class="text-button">Back to courses ←</a>
+              </div>
+              <nav class="mt-8 border-t border-ink/15 pt-5 text-sm" aria-label="Example breadcrumb">
+                <ol class="flex flex-wrap gap-2 text-ink/55">
+                  <li><a href="#" class="font-black underline underline-offset-4">Home</a></li><li aria-hidden="true">/</li>
+                  <li><a href="#" class="font-black underline underline-offset-4">Courses</a></li><li aria-hidden="true">/</li>
+                  <li aria-current="page">Angular Foundations</li>
+                </ol>
+              </nav>
+            </div>
+          </section>
+
+          <section id="navigation" class="mt-16 scroll-mt-24" aria-labelledby="navigation-title">
+            <h3 id="navigation-title" class="font-display text-3xl font-black">Application navigation</h3>
+            <div class="mt-7 overflow-hidden border border-ink/15 bg-paper">
+              <nav class="flex min-h-20 items-center justify-between gap-4 px-5" aria-label="Example application navigation">
+                <a href="#" class="flex items-center gap-3"><span class="grid size-10 place-items-center bg-coral font-black text-white">C</span><strong>Codes</strong></a>
+                <div class="hidden gap-6 text-sm font-black md:flex"><a href="#">Home</a><a class="text-coral" href="#" aria-current="page">Courses</a><a href="#">My registrations</a></div>
+                <div class="flex items-center gap-2"><a href="#" class="text-button">Mona</a><button class="icon-button" type="button" aria-label="Log out">↗</button></div>
+              </nav>
+              <nav class="flex gap-5 overflow-x-auto border-t border-ink/10 px-5 py-3 text-xs font-black md:hidden" aria-label="Example mobile navigation"><a href="#">Home</a><a class="text-coral" href="#">Courses</a><a class="whitespace-nowrap" href="#">My registrations</a><a href="#">Profile</a></nav>
+            </div>
+            <p class="mt-4 text-xs leading-5 text-ink/60">Desktop shows role-aware routes. Mobile uses a stable horizontal navigation row rather than hiding essential routes behind an inaccessible control.</p>
+          </section>
+        </section>
+
+        <section id="forms" class="spec-section">
+          <p class="section-kicker">03 · Forms</p>
+          <h2 class="section-heading">Every field explains its purpose and recovery path.</h2>
+
+          <section id="form-controls" class="mt-12 scroll-mt-24" aria-labelledby="controls-title">
+            <h3 id="controls-title" class="font-display text-3xl font-black">Form controls</h3>
+            <div class="mt-7 grid gap-8 lg:grid-cols-2">
+              <form class="specimen">
+                <div>
+                  <label class="form-label" for="name-example">Student name</label>
+                  <input id="name-example" class="form-input" autocomplete="name" placeholder="e.g. Mona Ali" />
+                  <p class="form-hint">Use the name shown on your account.</p>
+                </div>
+                <div class="mt-5">
+                  <label class="form-label" for="email-example">Email address</label>
+                  <input id="email-example" class="form-input" type="email" autocomplete="email" value="mona@example.com" />
+                </div>
+                <div class="mt-5">
+                  <label class="form-label" for="course-example">Course</label>
+                  <select id="course-example" class="form-input"><option>Angular Foundations</option><option>JavaScript Essentials</option></select>
+                </div>
+                <div class="mt-5">
+                  <label class="form-label" for="notes-example">Notes</label>
+                  <textarea id="notes-example" class="form-input min-h-28 py-3" placeholder="Optional information"></textarea>
+                </div>
+              </form>
+
+              <div class="specimen">
+                <p class="token-label">Selection controls</p>
+                <fieldset class="mt-6">
+                  <legend class="form-label">Course level</legend>
+                  <div class="mt-3 space-y-3">
+                    <label class="flex min-h-11 items-center gap-3"><input class="size-5 accent-coral" type="radio" name="level" checked /> Beginner</label>
+                    <label class="flex min-h-11 items-center gap-3"><input class="size-5 accent-coral" type="radio" name="level" /> Intermediate</label>
+                  </div>
+                </fieldset>
+                <fieldset class="mt-7 border-t border-ink/15 pt-6">
+                  <legend class="form-label">Publishing options</legend>
+                  <label class="mt-3 flex min-h-11 items-center gap-3"><input class="size-5 accent-coral" type="checkbox" checked /> Publish in public catalog</label>
+                  <label class="mt-2 flex min-h-11 items-center gap-3"><input class="size-5 accent-coral" type="checkbox" /> Feature on home page</label>
+                </fieldset>
+                <div class="mt-7">
+                  <label class="form-label" for="disabled-example">Archived course</label>
+                  <input id="disabled-example" class="form-input opacity-55" value="MongoDB Basics" disabled />
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section id="validation" class="mt-16 scroll-mt-24" aria-labelledby="validation-title">
+            <h3 id="validation-title" class="font-display text-3xl font-black">Validation and form states</h3>
+            <div class="mt-7 grid gap-6 lg:grid-cols-3">
+              <div class="specimen">
+                <p class="token-label">Default</p>
+                <label class="form-label mt-5" for="default-password">Password</label>
+                <input id="default-password" class="form-input" type="password" placeholder="At least 8 characters" />
+                <p class="form-hint">Use at least eight characters.</p>
+              </div>
+              <div class="border-s-4 border-danger bg-danger-soft p-5 sm:p-7">
+                <p class="token-label text-danger">Error</p>
+                <label class="form-label mt-5" for="error-email">Email address</label>
+                <input id="error-email" class="form-input border-danger" type="email" value="invalid-email" aria-describedby="error-email-message" />
+                <p id="error-email-message" class="field-error"><span aria-hidden="true">!</span> Enter an email such as name@example.com.</p>
+              </div>
+              <div class="border-s-4 border-success bg-success-soft p-5 sm:p-7">
+                <p class="token-label text-success">Success</p>
+                <label class="form-label mt-5" for="saved-name">Student name</label>
+                <input id="saved-name" class="form-input border-success" value="Mona Ali" />
+                <p class="mt-2 text-sm font-bold text-success"><span aria-hidden="true">✓</span> Profile saved.</p>
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <section id="content" class="spec-section">
+          <p class="section-kicker">04 · Product content</p>
+          <h2 class="section-heading">Components support course discovery and decisions.</h2>
+
+          <section id="course-components" class="mt-12 scroll-mt-24" aria-labelledby="course-title">
+            <h3 id="course-title" class="font-display text-3xl font-black">Course components</h3>
+            <div class="mt-7 specimen">
+              <p class="token-label">Catalog row</p>
+              <article class="course-row mt-4">
+                <span class="font-display text-4xl font-black text-coral/40" aria-hidden="true">01</span>
+                <div>
+                  <p class="section-kicker">Beginner · 18 hours · 12 seats</p>
+                  <h4 class="mt-2 font-display text-3xl font-black">Angular Foundations</h4>
+                  <p class="mt-3 max-w-2xl leading-7 text-ink/65">Build accessible component-based interfaces with routes, services, and forms.</p>
+                </div>
+                <a href="#" class="primary-button w-fit">View course</a>
+              </article>
+            </div>
+
+            <div class="mt-8 grid gap-8 lg:grid-cols-[1fr_21rem]">
+              <div class="specimen">
+                <p class="token-label">Course detail content</p>
+                <h4 class="mt-4 font-display text-4xl font-black">Angular Foundations</h4>
+                <p class="mt-4 max-w-2xl leading-7 text-ink/65">Clear value statement and learning outcomes appear before the registration action.</p>
+                <ul class="mt-7 grid gap-3 sm:grid-cols-2"><li class="border-t border-ink/15 pt-3">Components and templates</li><li class="border-t border-ink/15 pt-3">Routing and services</li><li class="border-t border-ink/15 pt-3">Reactive forms</li><li class="border-t border-ink/15 pt-3">Accessible states</li></ul>
+              </div>
+              <aside class="border-s-4 border-coral bg-white/45 p-6">
+                <p class="token-label">Decision facts</p>
+                <dl class="mt-5 space-y-5">
+                  <div><dt class="token-label">Duration</dt><dd class="mt-1 text-xl font-black">18 hours</dd></div>
+                  <div><dt class="token-label">Full capacity</dt><dd class="mt-1 text-xl font-black">30</dd></div>
+                  <div><dt class="token-label">Remaining seats</dt><dd class="mt-1 text-xl font-black text-coral">12</dd></div>
+                  <div><dt class="token-label">Level</dt><dd class="mt-1 text-xl font-black">Beginner</dd></div>
+                </dl>
+                <button class="primary-button mt-7 w-full" type="button">Register for course</button>
+              </aside>
+            </div>
+          </section>
+        </section>
+
+        <section id="data" class="spec-section">
+          <p class="section-kicker">05 · Data display</p>
+          <h2 class="section-heading">Operational data stays readable and actionable.</h2>
+
+          <section id="metrics" class="mt-12 scroll-mt-24" aria-labelledby="metrics-title">
+            <h3 id="metrics-title" class="font-display text-3xl font-black">Metrics</h3>
+            <dl class="mt-7 grid border-y border-ink/15 sm:grid-cols-2 lg:grid-cols-4">
+              <div class="metric"><dt>Total courses</dt><dd>12</dd></div>
+              <div class="metric"><dt>Published</dt><dd>8</dd></div>
+              <div class="metric"><dt>Enrollments</dt><dd>76</dd></div>
+              <div class="metric border-e-0"><dt>Pending review</dt><dd>9</dd></div>
+            </dl>
+          </section>
+
+          <section id="statuses" class="mt-16 scroll-mt-24" aria-labelledby="statuses-title">
+            <h3 id="statuses-title" class="font-display text-3xl font-black">Status labels</h3>
+            <div class="mt-7 specimen flex flex-wrap gap-4">
+              <span class="status-label"><span class="size-2 rounded-full bg-warning" aria-hidden="true"></span>Pending</span>
+              <span class="status-label bg-success-soft text-success"><span aria-hidden="true">✓</span>Confirmed</span>
+              <span class="status-label bg-danger-soft text-danger"><span aria-hidden="true">×</span>Cancelled</span>
+              <span class="status-label bg-info-soft text-info">Published</span>
+              <span class="status-label">Draft</span>
+              <span class="status-label border border-ink/25 bg-transparent">Archived</span>
+              <span class="status-label bg-ink text-cream">Read-only</span>
+            </div>
+          </section>
+
+          <section id="tables" class="mt-16 scroll-mt-24" aria-labelledby="tables-title">
+            <h3 id="tables-title" class="font-display text-3xl font-black">Enrollment table</h3>
+            <div class="mt-7 overflow-x-auto border-y border-ink/15 bg-white/35">
+              <table class="w-full min-w-[58rem] border-collapse text-left">
+                <caption class="sr-only">Example enrollment review data</caption>
+                <thead><tr class="text-[10px] font-black uppercase tracking-[.12em] text-ink/50"><th class="p-4">Student</th><th class="p-4">Course</th><th class="p-4">Registered</th><th class="p-4">Status</th><th class="p-4">Action</th></tr></thead>
+                <tbody>
+                  <tr class="border-t border-ink/15"><td class="p-4"><strong>Mona Ali</strong><span class="mt-1 block text-xs text-ink/50">mona@example.com</span></td><td class="p-4">Angular Foundations</td><td class="p-4">24 Jul 2026</td><td class="p-4"><span class="status-label">Pending</span></td><td class="p-4"><button class="text-button" type="button">Review</button></td></tr>
+                  <tr class="border-t border-ink/15"><td class="p-4"><strong>Omar Hassan</strong><span class="mt-1 block text-xs text-ink/50">omar@example.com</span></td><td class="p-4">JavaScript Essentials</td><td class="p-4">22 Jul 2026</td><td class="p-4"><span class="status-label bg-success-soft text-success">Confirmed</span></td><td class="p-4"><button class="text-button" type="button">Review</button></td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="mt-4 text-xs leading-5 text-ink/60">Small screens preserve the table relationship through horizontal scrolling. A production mobile alternative may use labeled rows when actions become too dense.</p>
+          </section>
+        </section>
+
+        <section id="feedback" class="spec-section">
+          <p class="section-kicker">06 · Feedback & state</p>
+          <h2 class="section-heading">Every async path explains what is happening.</h2>
+
+          <section id="alerts" class="mt-12 scroll-mt-24" aria-labelledby="alerts-title">
+            <h3 id="alerts-title" class="font-display text-3xl font-black">Alerts</h3>
+            <div class="mt-7 grid gap-4 lg:grid-cols-2">
+              <div class="alert border-success bg-success-soft"><strong class="text-success">Registration received</strong><p class="mt-1">Your request is pending admin review.</p></div>
+              <div class="alert border-info bg-info-soft"><strong class="text-info">Course updated</strong><p class="mt-1">Changes are visible to administrators.</p></div>
+              <div class="alert border-warning bg-warning-soft"><strong class="text-warning">Course almost full</strong><p class="mt-1">Only two approved seats remain.</p></div>
+              <div class="alert border-danger bg-danger-soft"><strong class="text-danger">Could not save status</strong><p class="mt-1">Check your connection and try again.</p></div>
+            </div>
+          </section>
+
+          <section id="states" class="mt-16 scroll-mt-24" aria-labelledby="states-title">
+            <h3 id="states-title" class="font-display text-3xl font-black">Loading, empty, and error states</h3>
+            <div class="mt-7 grid gap-6 lg:grid-cols-3">
+              <div class="specimen" aria-label="Loading course results">
+                <p class="token-label">Loading</p>
+                <div class="mt-6 space-y-4" aria-hidden="true"><div class="h-4 w-2/3 animate-pulse bg-ink/15"></div><div class="h-3 w-full animate-pulse bg-ink/10"></div><div class="h-3 w-5/6 animate-pulse bg-ink/10"></div><div class="h-11 w-36 animate-pulse bg-ink/15"></div></div>
+              </div>
+              <div class="specimen">
+                <p class="token-label">Empty</p>
+                <h4 class="mt-5 font-display text-2xl font-black">No courses match</h4>
+                <p class="mt-3 text-sm leading-6 text-ink/60">Clear your filters or search for another topic.</p>
+                <button class="secondary-button mt-5" type="button">Clear filters</button>
+              </div>
+              <div class="specimen">
+                <p class="token-label">Error</p>
+                <h4 class="mt-5 font-display text-2xl font-black">Could not load courses</h4>
+                <p class="mt-3 text-sm leading-6 text-ink/60">The server did not respond. Your filters are still available.</p>
+                <button class="primary-button mt-5" type="button">Try again</button>
+              </div>
+            </div>
+          </section>
+
+          <section id="dialogs" class="mt-16 scroll-mt-24" aria-labelledby="dialogs-title">
+            <h3 id="dialogs-title" class="font-display text-3xl font-black">Dialog and toast</h3>
+            <div class="mt-7 specimen flex flex-wrap gap-4">
+              <button id="open-dialog" class="danger-button" type="button">Preview archive dialog</button>
+              <button id="show-toast" class="secondary-button" type="button">Preview toast</button>
+            </div>
+          </section>
+        </section>
+
+        <section id="responsive" class="spec-section">
+          <p class="section-kicker">07 · Responsive & accessibility</p>
+          <h2 class="section-heading">The same content contract works at every width.</h2>
+          <div class="mt-10 grid gap-8 lg:grid-cols-2">
+            <div class="specimen">
+              <h3 class="font-display text-2xl font-black">Breakpoint rules</h3>
+              <dl class="mt-6 divide-y divide-ink/15 text-sm">
+                <div class="grid grid-cols-[7rem_1fr] gap-4 py-4"><dt class="font-black">Base</dt><dd>One column, full-width actions, horizontal mobile nav.</dd></div>
+                <div class="grid grid-cols-[7rem_1fr] gap-4 py-4"><dt class="font-black">sm · 640</dt><dd>Two-column facts and short field groups.</dd></div>
+                <div class="grid grid-cols-[7rem_1fr] gap-4 py-4"><dt class="font-black">md · 768</dt><dd>Desktop nav appears; data tables may scroll.</dd></div>
+                <div class="grid grid-cols-[7rem_1fr] gap-4 py-4"><dt class="font-black">lg · 1024</dt><dd>Main content and decision sidebar can sit together.</dd></div>
+                <div class="grid grid-cols-[7rem_1fr] gap-4 py-4"><dt class="font-black">xl · 1280</dt><dd>Admin form and course list share a wide workspace.</dd></div>
+              </dl>
+            </div>
+            <div class="specimen">
+              <h3 class="font-display text-2xl font-black">Accessibility contract</h3>
+              <ul class="mt-6 list-disc space-y-3 ps-5 text-sm leading-6 text-ink/70">
+                <li>One descriptive H1 and logical heading order.</li>
+                <li>Visible labels, hints, and connected error messages.</li>
+                <li>Keyboard access and visible Mint focus indicators.</li>
+                <li>Links navigate; buttons perform actions.</li>
+                <li>Status uses text or icons in addition to color.</li>
+                <li>Touch targets are approximately 44×44 CSS pixels.</li>
+                <li>Motion respects reduced-motion preferences.</li>
+                <li>Loading, empty, success, and error states are announced.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="border-t border-cream/15 bg-ink py-12 text-cream">
+      <div class="shell flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+        <div><p class="font-display text-2xl font-black">Codes Training Center</p><p class="mt-2 max-w-xl text-sm text-cream/65">One practical design language for the complete MEAN-stack final project.</p></div>
+        <p class="text-xs text-cream/45">Day 3 · Design system v1.0</p>
+      </div>
+    </footer>
+
+    <!-- Native dialog demonstrates the destructive-action confirmation pattern. -->
+    <dialog id="archive-dialog" class="m-auto w-[min(100%-2rem,32rem)] rounded-lg bg-cream p-0 text-ink shadow-2xl">
+      <form method="dialog" class="p-6 sm:p-8">
+        <p class="section-kicker">Confirm action</p>
+        <h2 class="mt-3 font-display text-3xl font-black">Archive Angular Foundations?</h2>
+        <p class="mt-4 text-sm leading-6 text-ink/65">The course will disappear from the public catalog. Existing enrollment records remain available.</p>
+        <div class="mt-7 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
+          <button class="secondary-button" value="cancel" type="submit">Keep course</button>
+          <button class="danger-button" value="archive" type="submit">Archive course</button>
+        </div>
+      </form>
+    </dialog>
+
+    <!-- Toast is hidden until the preview button demonstrates transient feedback. -->
+    <div id="toast" class="fixed bottom-5 end-5 z-50 hidden max-w-sm border-s-4 border-success bg-success-soft p-5 shadow-xl" role="status">
+      <strong class="text-success">Course saved</strong>
+      <p class="mt-1 text-sm">Angular Foundations was updated successfully.</p>
+    </div>
+
+    <script>
+      const archiveDialog = document.querySelector('#archive-dialog');
+      const toast = document.querySelector('#toast');
+      const loadingButton = document.querySelector('#loading-button');
+      const loadingIcon = document.querySelector('#loading-icon');
+      const loadingLabel = document.querySelector('#loading-label');
+
+      document.querySelector('#open-dialog').addEventListener('click', () => {
+        archiveDialog.showModal();
+      });
+
+      document.querySelector('#show-toast').addEventListener('click', () => {
+        toast.classList.remove('hidden');
+        window.setTimeout(() => toast.classList.add('hidden'), 2600);
+      });
+
+      loadingButton.addEventListener('click', () => {
+        loadingButton.disabled = true;
+        loadingIcon.classList.remove('hidden');
+        loadingLabel.textContent = 'Saving…';
+
+        window.setTimeout(() => {
+          loadingButton.disabled = false;
+          loadingIcon.classList.add('hidden');
+          loadingLabel.textContent = 'Show loading';
+        }, 1600);
+      });
+    </script>
+  </body>
+</html>
