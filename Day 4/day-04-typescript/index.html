@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Interactive TypeScript course contracts lab for Codes Training Center Day 4."
+    />
+    <title>Day 4 TypeScript Lab | Codes Training Center</title>
+
+    <!--
+      The browser build keeps this classroom interface easy to run. The final
+      Angular project uses a compiled Tailwind workflow instead.
+    -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.3"></script>
+    <style type="text/tailwindcss">
+      @theme {
+        --color-cream: #f7f1e6;
+        --color-paper: #fffdf7;
+        --color-ink: #122a23;
+        --color-coral: #e75235;
+        --color-mint: #9ce5c9;
+        --font-display: Georgia, "Times New Roman", serif;
+        --font-sans: "Avenir Next", "Trebuchet MS", sans-serif;
+      }
+
+      @layer base {
+        html { @apply min-w-80 scroll-smooth bg-cream; }
+        body {
+          @apply m-0 min-h-screen overflow-x-hidden bg-cream font-sans text-ink antialiased;
+          background-image:
+            radial-gradient(circle at 8% 5%, rgb(156 229 201 / .42), transparent 28rem),
+            radial-gradient(circle at 92% 18%, rgb(231 82 53 / .18), transparent 25rem);
+        }
+        button, select { font: inherit; }
+        :focus-visible { @apply outline-3 outline-offset-3 outline-coral; }
+      }
+
+      @layer components {
+        .shell { @apply mx-auto w-[min(100%-2rem,76rem)]; }
+        .kicker { @apply text-xs font-black uppercase tracking-[.2em] text-coral; }
+        .primary {
+          @apply inline-flex min-h-12 items-center justify-center bg-coral px-5 font-black text-white transition duration-200 hover:-translate-y-0.5 hover:bg-ink disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0;
+        }
+        .field {
+          @apply min-h-12 w-full border-2 border-ink/20 bg-white px-4 transition focus:border-coral;
+        }
+        .fact {
+          @apply border-t border-ink/15 pt-4;
+        }
+        .fact dt {
+          @apply text-xs font-black uppercase tracking-wider text-ink/55;
+        }
+        .fact dd {
+          @apply mt-1 font-display text-3xl font-bold;
+        }
+      }
+
+      @keyframes rise {
+        from { opacity: 0; transform: translateY(18px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      @keyframes draw {
+        from { transform: scaleX(0); }
+        to { transform: scaleX(1); }
+      }
+
+      @keyframes pulse-soft {
+        0%, 100% { opacity: .48; transform: scale(1); }
+        50% { opacity: .7; transform: scale(1.04); }
+      }
+
+      .hero-copy { animation: rise 650ms ease both; }
+      .lab { animation: rise 650ms 120ms ease both; }
+      .hero-rule { animation: draw 700ms 220ms ease both; transform-origin: left; }
+      .ambient-orb { animation: pulse-soft 7s ease-in-out infinite; }
+
+      #availabilityValue[data-state="open"] { @apply text-ink; }
+      #availabilityValue[data-state="closed"] { @apply text-coral; }
+      #resultBox[data-state="idle"] { @apply border-ink/20 bg-white/55; }
+      #resultBox[data-state="success"] { @apply border-ink bg-mint/45; }
+      #resultBox[data-state="error"] { @apply border-coral bg-coral/10; }
+
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+          animation-duration: .01ms !important;
+          animation-iteration-count: 1 !important;
+          scroll-behavior: auto !important;
+          transition-duration: .01ms !important;
+        }
+      }
+    </style>
+
+    <!-- TypeScript compiles src/ui.ts to this browser-ready ES module. -->
+    <script type="module" src="dist/ui.js"></script>
+  </head>
+
+  <body>
+    <a
+      href="#lab"
+      class="fixed start-4 top-4 z-50 -translate-y-24 bg-ink px-4 py-3 font-black text-white focus:translate-y-0"
+    >
+      Skip to the lab
+    </a>
+
+    <div
+      class="ambient-orb pointer-events-none fixed -end-28 top-28 size-80 rounded-full border-[50px] border-coral/10"
+      aria-hidden="true"
+    ></div>
+
+    <header class="border-b border-ink/15">
+      <div class="shell flex min-h-20 items-center justify-between gap-5">
+        <a href="../../README.md" class="flex items-center gap-3 no-underline">
+          <span class="grid size-11 place-items-center rounded-full bg-ink font-black text-cream" aria-hidden="true">
+            &lt;/&gt;
+          </span>
+          <span>
+            <strong class="block font-display text-2xl leading-none">Codes</strong>
+            <small class="mt-1 block text-[10px] font-black uppercase tracking-[.15em]">
+              Training Center
+            </small>
+          </span>
+        </a>
+        <span class="text-xs font-black uppercase tracking-[.18em] text-ink/60">
+          Day 4 · TypeScript
+        </span>
+      </div>
+    </header>
+
+    <main>
+      <section class="shell grid min-h-[32rem] items-center py-16 sm:py-24">
+        <div class="hero-copy max-w-5xl">
+          <p class="kicker">Strict types · Shared contracts · Safer changes</p>
+          <h1 class="mt-5 max-w-4xl font-display text-5xl leading-[.94] font-bold tracking-[-.045em] sm:text-7xl lg:text-8xl">
+            Make course data explain itself.
+          </h1>
+          <p class="mt-7 max-w-2xl text-lg leading-8 text-ink/68 sm:text-xl">
+            Select a course, inspect its typed API contract, and submit a
+            registration through the same TypeScript service used by the
+            terminal example.
+          </p>
+          <div class="hero-rule mt-10 h-1 w-40 bg-coral"></div>
+        </div>
+      </section>
+
+      <section id="lab" class="lab border-y border-ink/15 bg-paper/75 py-16 sm:py-24" aria-labelledby="labTitle">
+        <div class="shell">
+          <p class="kicker">Interactive example</p>
+          <h2 id="labTitle" class="mt-3 max-w-3xl font-display text-4xl font-bold tracking-tight sm:text-6xl">
+            One model, three views of the same truth.
+          </h2>
+          <p class="mt-5 max-w-2xl text-lg leading-8 text-ink/65">
+            The selector, capacity calculation, DTO preview, and registration
+            result all depend on shared TypeScript contracts.
+          </p>
+
+          <div class="mt-12 grid overflow-hidden border-2 border-ink bg-paper lg:grid-cols-[1.08fr_.92fr]">
+            <div class="min-w-0 p-6 sm:p-10">
+              <form id="registrationForm">
+                <label for="courseSelect" class="block text-sm font-black">
+                  Choose a course
+                </label>
+                <select id="courseSelect" name="courseId" class="field mt-2"></select>
+
+                <dl class="mt-8 grid gap-6 sm:grid-cols-2">
+                  <div class="fact">
+                    <dt>Full capacity</dt>
+                    <dd id="capacityValue">—</dd>
+                  </div>
+                  <div class="fact">
+                    <dt>Approved</dt>
+                    <dd id="approvedValue">—</dd>
+                  </div>
+                  <div class="fact">
+                    <dt>Remaining seats</dt>
+                    <dd id="remainingValue" class="text-coral">—</dd>
+                  </div>
+                  <div class="fact">
+                    <dt>Availability</dt>
+                    <dd id="availabilityValue" class="text-xl">—</dd>
+                  </div>
+                </dl>
+
+                <div class="mt-8 border-s-4 border-mint ps-5">
+                  <p class="text-sm leading-7 text-ink/65">
+                    This demo submits as <strong class="text-ink">Mona Ali</strong>.
+                    A successful request starts with the typed status
+                    <code class="bg-mint/35 px-1.5 py-1 font-mono text-xs">pending</code>.
+                  </p>
+                </div>
+
+                <button id="submitButton" type="submit" class="primary mt-8 w-full">
+                  Request registration
+                </button>
+              </form>
+
+              <div
+                id="resultBox"
+                data-state="idle"
+                class="mt-6 border-s-4 p-5"
+                role="status"
+                tabindex="-1"
+              >
+                <strong>Ready to test</strong>
+                <p class="mt-1 mb-0 text-sm leading-6 text-ink/65">
+                  Choose a published course with remaining seats.
+                </p>
+              </div>
+            </div>
+
+            <aside class="min-w-0 bg-ink p-6 text-cream sm:p-10" aria-labelledby="contractTitle">
+              <p class="text-xs font-black uppercase tracking-[.2em] text-mint">
+                CourseResponseDto
+              </p>
+              <h3 id="contractTitle" class="mt-3 font-display text-3xl font-bold">
+                API contract preview
+              </h3>
+              <p class="mt-4 text-sm leading-7 text-cream/65">
+                The DTO exposes client-safe fields and calculates remaining
+                seats from approved enrollments.
+              </p>
+              <pre
+                id="contractOutput"
+                class="mt-7 min-h-80 overflow-auto border-t border-cream/20 pt-6 font-mono text-sm leading-7 text-mint"
+                aria-live="polite"
+              ></pre>
+            </aside>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="shell flex flex-wrap items-center justify-between gap-5 py-10 text-sm text-ink/60">
+      <p>TypeScript 6 · Strict mode · Tailwind CSS 4</p>
+      <a class="font-black text-ink underline decoration-coral decoration-2 underline-offset-4" href="README.md">
+        Read the Day 4 guide
+      </a>
+    </footer>
+  </body>
+</html>

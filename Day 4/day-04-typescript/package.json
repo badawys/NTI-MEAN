@@ -1,0 +1,17 @@
+{
+  "name": "codes-training-center-day-04-typescript",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Beginner-friendly TypeScript examples for the Codes Training Center course.",
+  "scripts": {
+    "build": "tsc --project tsconfig.json",
+    "demo": "npm run build && node dist/main.js",
+    "check": "npm run build && node dist/self-check.js",
+    "preview": "npm run build && http-server . -p 4174 -c-1"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1",
+    "typescript": "~6.0.0"
+  }
+}
