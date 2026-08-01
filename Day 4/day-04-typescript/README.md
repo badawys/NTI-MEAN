@@ -5,6 +5,11 @@ models, helpers, DTOs, services, and generic data-access contracts. It includes
 a terminal demonstration and a browser interface powered by the same compiled
 TypeScript code.
 
+For a compact, file-by-file version of the same concepts, open the sibling
+[complete session demo](../day-04-typescript-session-demo/README.md). It keeps
+the domain models, derived DTOs, generic result, service rules, and entry point
+in separate folders so the complete workflow can be read in one sitting.
+
 ## Learning outcomes
 
 After completing this project, you should be able to:

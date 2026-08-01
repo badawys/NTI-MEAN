@@ -1,0 +1,14 @@
+{
+  "name": "codes-training-center-day-04-session-demo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A small, complete TypeScript enrollment demo for Day 4.",
+  "scripts": {
+    "build": "tsc --project tsconfig.json",
+    "start": "npm run build && node dist/index.js"
+  },
+  "devDependencies": {
+    "typescript": "~6.0.0"
+  }
+}
