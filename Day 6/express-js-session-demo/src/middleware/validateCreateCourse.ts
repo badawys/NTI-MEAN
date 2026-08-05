@@ -17,7 +17,6 @@ const allowedStatuses: CourseStatus[] = [
 
 export function validateCreateCourse(
   request: Request,
-  respse: Response,
   next: NextFunction
 ): void {
   const { title, capacity, status } = request.body;
