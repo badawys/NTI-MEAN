@@ -3,7 +3,7 @@ import express, {
   type Response
 } from "express";
 import coursesRouter from "./routes/courses.routes";
-
+import { errorHandler } from "./middleware/errorHandler";
 
 const app = express();
 app.use(express.json());
@@ -16,5 +16,7 @@ app.get("/api/health", (_request: Request, response: Response) => {
     message: "API is running"
   });
 });
+
+app.use(errorHandler);
 
 export default app;
