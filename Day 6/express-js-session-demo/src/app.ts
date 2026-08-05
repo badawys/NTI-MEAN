@@ -6,6 +6,8 @@ import coursesRouter from "./routes/courses.routes";
 
 
 const app = express();
+app.use(express.json());
+
 app.use("/api/courses", coursesRouter);
 
 app.get("/api/health", (_request: Request, response: Response) => {

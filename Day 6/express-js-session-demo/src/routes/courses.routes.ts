@@ -1,16 +1,12 @@
 import { Router } from "express";
-import type {
-  Request,
-  Response
-} from "express";
+import { getAllCourses, createCourse } from "../controllers/courses.controller";
 
 const router = Router();
 
-router.get("/", (
-  _request: Request,
-  response: Response
-) => {
-  response.json({ success: true, data: [] });
-})
+// Get all courses
+router.get("/", getAllCourses);
+
+// Create a new course
+router.post("/", createCourse);
 
 export default router;
