@@ -1,7 +1,6 @@
 import type {
   NextFunction,
-  Request,
-  Response
+  Request
 } from "express";
 import { AppError } from "../errors/AppError";
 
