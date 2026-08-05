@@ -1,6 +1,7 @@
 import type {
   NextFunction,
-  Request
+  Request,
+  Response
 } from "express";
 import { AppError } from "../errors/AppError";
 
@@ -16,6 +17,7 @@ const allowedStatuses: CourseStatus[] = [
 
 export function validateCreateCourse(
   request: Request,
+  _response: Response,
   next: NextFunction
 ): void {
   const { title, capacity, status } = request.body;
